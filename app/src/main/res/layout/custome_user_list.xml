@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textUserId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButtonView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/eye" />
+
+            <ImageButton
+                android:id="@+id/imageButtonEdit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/edit26" />
+
+            <ImageButton
+                android:id="@+id/imageButtonDelete"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/trash26" />
+
+            <ImageButton
+                android:id="@+id/imageButtonAddCom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/moneybag26" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddSalesPerson">
+    <LinearLayout
+        android:textDirection="ltr"
+        android:background="@color/whitebackground"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/UserName" />
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:text="@string/AddPassword" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="MainRegion" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="left"
+                android:text="check box + region name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="left"
+                android:text="check box + region name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="left"
+                android:text="check box + region name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/LVNews"
+
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/whitebackground"
+            android:divider="@color/whitebackground"
+            android:dividerHeight="2dp"
+            android:gravity="left" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/addUser" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="46dp"
+            android:layout_weight="0"
+            android:background="@color/whiteback"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
+
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:background="@color/whiteback"
+                android:drawableRight="@drawable/newsa1"
+                android:drawablePadding="8dp"
+
+                android:text="@string/Edit"
+                android:textAlignment="textStart"
+                android:textColor="@color/darkblue"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/bulogotype"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:background="@color/whiteback"
+                android:drawableRight="@drawable/add1"
+                android:drawablePadding="8dp"
+
+                android:text="@string/AddNewTool"
+                android:textAlignment="textStart"
+                android:textColor="@color/darkblue"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/butAdmin"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:background="@color/whiteback"
+                android:drawableRight="@drawable/home1"
+                android:drawablePadding="8dp"
+
+                android:text="@string/admin"
+                android:textAlignment="textStart"
+                android:textColor="@color/darkblue"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
