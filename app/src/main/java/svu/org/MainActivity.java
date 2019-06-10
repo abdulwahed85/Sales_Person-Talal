@@ -22,20 +22,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String message = this.getIntent().getStringExtra("message");
-        if(message.length() > 0 ) {
-            Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
-            message = "";
+        if (this.getIntent().hasExtra("message")) {
+            String message = this.getIntent().getStringExtra("message");
+            if(message.length() > 0 ) {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                message = "";
+            }
         }
     }
 
     public void login(View view){
-
-        //if(UserName.getText().toString().equals("admin") && Password.getText().toString().equals("admin")){
-
-                //correcct password
-           // }else{}
-                //wrong password
 
         TextView EDTUserName = (TextView) findViewById(R.id.EDTFullName);
         TextView EDTpassword = (TextView) findViewById(R.id.EDTpassword);
