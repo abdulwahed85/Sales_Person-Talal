@@ -12,12 +12,14 @@ import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -26,16 +28,47 @@ import org.json.JSONObject;
 
 public class ControlPanel extends AppCompatActivity {
 
+    String userID;
+    String[] roles;
+
     Spinner spinner,spinner2;
     ListView listView;
 
+    //TextView  TVfullName = (TextView) findViewById(R.id.TVfullName);
+    TextView  TVmonthlyCommission;
+    TextView  TVrsgistrationDate;
+    TextView  TVsalesPersonNumber;
 
+    String[] months_array = {"0", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
-    String[] mobileArray;// = {"South region=70000","Costal region=5000","Northern rgion=5000","Eastern region=60000", "Lebanon=13500"};
+    String[] mobileArray; //= {"South region=70000","Costal region=5000","Northern rgion=5000","Eastern region=60000", "Lebanon=13500"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (this.getIntent().hasExtra("userID")) {
+            userID = this.getIntent().getStringExtra("userID");
+            userID = "e080e402-9040-4078-99e1-81fd86ff3afe";
+        }
+
+        if (this.getIntent().hasExtra("roles")) {
+            String strRoles = this.getIntent().getStringExtra("roles");
+
+            JSONArray jsonArray = null;
+            try {
+                jsonArray = new JSONArray(strRoles);
+
+                roles = new String[jsonArray.length()];
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    roles[i] = jsonArray.getString(i);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
         setContentView(R.layout.activity_control_panel);
 
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -53,48 +86,57 @@ public class ControlPanel extends AppCompatActivity {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner2.setAdapter(adapter2);
+    }
 
+    public void search(View view) {
+        //spinner = (Spinner) findViewById(R.id.spinner);
+        //spinner2 = (Spinner) findViewById(R.id.spinner2);
+
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("userId", userID);
+        map.put("month", Integer.toString(Arrays.asList(months_array).indexOf(spinner.getSelectedItem())));
+        map.put("year", spinner2.getSelectedItem().toString());
 
         HttpCall httpCall = new HttpCall();
         httpCall.setMethodtype(HttpCall.GET);
-        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/Regions");
-
-
-        new HttpRequest() {
-            @Override
-            protected void onResponse(String response) throws JSONException {
-                super.onResponse(response);
-                JSONArray json = new JSONArray(response);
-                mobileArray = new String[json.length()];
-                for(int i = 0; i < json.length(); ++ i) {
-                    mobileArray[i] = ((json.getJSONObject(i)).get("RegionName")).toString();
-
-                }
-
-                ArrayAdapter<String> adapter3= new ArrayAdapter<String>(ControlPanel.this, android.R.layout.simple_list_item_1, mobileArray);
-
-                listView.setAdapter(adapter3);
-            }
-        }.execute(httpCall);
-    }
-
-    public void postRegionTest(View view) {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("RegionName", "Jeddah");
-
-        HttpCall httpCall = new HttpCall();
-        httpCall.setMethodtype(HttpCall.POST);
-        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/Regions/PostRegion/");
+        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/SalesTransaction/GetReport");
         httpCall.setParams(map);
 
+
         new HttpRequest() {
             @Override
             protected void onResponse(String response) throws JSONException {
                 super.onResponse(response);
+                TVmonthlyCommission = (TextView) findViewById(R.id.TVmonthlyCommission);
+                TVrsgistrationDate = (TextView) findViewById(R.id.TVrsgistrationDate);
+                TVsalesPersonNumber = (TextView) findViewById(R.id.TVsalesPersonNumber);
+
                 JSONObject json = new JSONObject(response);
-                Toast.makeText(ControlPanel.this,  json.get("RegionName").toString() + " has been added successfully", Toast.LENGTH_LONG).show();
+                if (json.has("Message")) {
+                    TVrsgistrationDate.setText(json.get("Message").toString());
+                } else {
+                    mobileArray = new String[json.length() - 3];
+                    mobileArray[0] = "SouthSalesCommission:    " + json.get("SouthSalesCommission").toString();
+                    mobileArray[1] = "CoastalSalesCommission:    " + json.get("CoastalSalesCommission").toString();
+                    mobileArray[2] = "NorthSalesCommission:    " + json.get("NorthSalesCommission").toString();
+                    mobileArray[3] = "EastSalesCommission:    " + json.get("EastSalesCommission").toString();
+                    mobileArray[4] = "LebanonSalesCommission:    " + json.get("LebanonSalesCommission").toString();
+
+                    ArrayAdapter<String> adapter3= new ArrayAdapter<String>(ControlPanel.this, android.R.layout.simple_list_item_1, mobileArray);
+
+                    listView.setAdapter(adapter3);
+
+                    TVmonthlyCommission.setText("Monthly Commission:    " + json.get("TotalMonthlyCommission").toString());
+                    TVrsgistrationDate.setText("Rsgistration Date:    " + json.get("RegistrationDate").toString());
+                    TVsalesPersonNumber.setText("SalesPerson Number:    " + json.get("SalePersonNumber").toString());
+                }
+
+                //TVfullName;
             }
         }.execute(httpCall);
+
+
     }
 
     public void addCommission(View view) {
@@ -102,6 +144,7 @@ public class ControlPanel extends AppCompatActivity {
         startActivity(intent1);
 
     }
+
     public void adminPage(View view) {
         Intent intent2=new Intent(this,AdminControlPanel.class);
         startActivity(intent2);
@@ -139,6 +182,4 @@ public class ControlPanel extends AppCompatActivity {
 
         return true;
     }
-
-
 }

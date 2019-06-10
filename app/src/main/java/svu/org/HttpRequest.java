@@ -88,11 +88,12 @@ public class HttpRequest extends AsyncTask<HttpCall, String, String> {
             if(!(
                     responseCode != HttpURLConnection.HTTP_OK &&
                     responseCode != HttpURLConnection.HTTP_CREATED &&
-                    responseCode != HttpURLConnection.HTTP_BAD_REQUEST)
+                    responseCode != HttpURLConnection.HTTP_BAD_REQUEST &&
+                    responseCode != HttpURLConnection.HTTP_INTERNAL_ERROR)
                 ) {
                 String line;
                 BufferedReader br;
-                if (responseCode != HttpURLConnection.HTTP_BAD_REQUEST) {
+                if (!(responseCode == HttpURLConnection.HTTP_BAD_REQUEST || responseCode == HttpURLConnection.HTTP_INTERNAL_ERROR)) {
                     br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
                 } else {
                     br = new BufferedReader(new InputStreamReader(urlConnection.getErrorStream()));

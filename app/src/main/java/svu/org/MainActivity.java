@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 if (json.has("access_token")) {
                     if(json.get("access_token").toString().length() > 0 ) {
                         Intent intent = new Intent(MainActivity.this, ControlPanel.class);
+                        intent.putExtra("userID",json.get("userID").toString());
+                        intent.putExtra("roles",json.get("roles").toString());
                         startActivity(intent);
                     } else {
                         Toast.makeText(MainActivity.this, "Username / Password are not correct or maybe user is not exists", Toast.LENGTH_LONG).show();
