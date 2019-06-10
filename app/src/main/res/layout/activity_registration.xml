@@ -8,151 +8,191 @@
     tools:context=".Registration">
 
     <ScrollView
-        android:background="@color/whitebackground" android:layout_width="fill_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@color/whitebackground">
 
         <LinearLayout
 
-            android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:paddingRight="15dp"
+            android:orientation="vertical"
             android:paddingLeft="15dp"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:paddingRight="15dp">
 
             <LinearLayout
-                android:orientation="vertical"
+                android:id="@+id/LLogin"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/LLogin"
                 android:layout_marginTop="7dp"
+                android:orientation="vertical"
                 android:paddingLeft="4dp"
                 android:paddingTop="4dp">
 
 
                 <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
                     android:maxLength="25"
                     android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:touchscreenBlocksFocus="false"
-                    android:layout_marginBottom="2dp">
+                    android:touchscreenBlocksFocus="false">
 
                     <EditText
-                        android:maxLength="50"
+                        android:id="@+id/EDTFullName"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@android:drawable/editbox_background"
+                        android:ems="10"
+                        android:hint="Enter Full Name"
                         android:inputType="text"
-                        android:ems="10"
-                        android:id="@+id/EDTUserName"
-                        android:layout_weight="1"
-                        android:textColor="#ff1a102c"
-                        android:background="@android:drawable/editbox_background"
-                        android:textSize="18dp"
-                        android:hint="@string/UserName"
-                        android:paddingBottom="9dp"
+                        android:maxLength="50"
                         android:paddingTop="9dp"
-                        android:layout_marginBottom="10dp"/>
+                        android:paddingBottom="9dp"
+                        android:textColor="#ff1a102c"
+                        android:textSize="18dp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:touchscreenBlocksFocus="false"
-                    android:layout_marginBottom="2dp">
+                    android:layout_marginBottom="2dp"
+                    android:orientation="vertical"
+                    android:touchscreenBlocksFocus="false">
 
                     <EditText
-                        android:maxLength="50"
+                        android:id="@+id/EDTemail"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:id="@+id/EDemail"
+                        android:layout_marginBottom="10dp"
                         android:layout_weight="1"
-                        android:textColor="#ff1a102c"
                         android:background="@android:drawable/editbox_background"
-                        android:textSize="18dp"
+                        android:ems="10"
                         android:hint="@string/Email"
-                        android:paddingBottom="9dp"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="50"
                         android:paddingTop="9dp"
-                        android:layout_marginBottom="10dp"
-                        android:inputType="textEmailAddress" />
+                        android:paddingBottom="9dp"
+                        android:textColor="#ff1a102c"
+                        android:textSize="18dp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:touchscreenBlocksFocus="false"
-                    android:layout_marginBottom="2dp">
-
-                    <EditText
-                        android:maxLength="50"
-                        android:gravity="left"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:id="@+id/EDTpassword"
-                        android:layout_weight="1"
-                        android:textColor="#ff1a102c"
-                        android:background="@android:drawable/editbox_background"
-                        android:textSize="18dp"
-                        android:hint="@string/AddPassword"
-                        android:paddingBottom="9dp"
-                        android:paddingTop="9dp"
-                        android:layout_marginBottom="10dp"
-                        android:inputType="textPassword" />
-
-                    <EditText
-                        android:maxLength="50"
-                        android:gravity="left"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:id="@+id/EDTpasswordR"
-                        android:layout_weight="1"
-                        android:textColor="#ff1a102c"
-                        android:background="@android:drawable/editbox_background"
-                        android:textSize="18dp"
-                        android:hint="@string/RepeatPassword"
-                        android:paddingBottom="9dp"
-                        android:paddingTop="9dp"
-                        android:layout_marginBottom="10dp"
-                        android:inputType="textPassword" />
-                </LinearLayout>
-
-                <LinearLayout
+                    android:layout_marginBottom="2dp"
                     android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:touchscreenBlocksFocus="false"
-                    android:layout_marginBottom="2dp" >
+                    android:touchscreenBlocksFocus="false">
 
                     <EditText
+                        android:id="@+id/EDTEmpNumber"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@android:drawable/editbox_background"
+                        android:ems="10"
+                        android:hint="Enter Employee Number"
+                        android:inputType="phone"
                         android:maxLength="15"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:id="@+id/EDTPhoneNumber"
-                        android:layout_weight="1"
-                        android:textColor="#ff1a102c"
-                        android:background="@android:drawable/editbox_background"
-                        android:textSize="18dp"
-                        android:hint="@string/PhoneNumber"
-                        android:paddingBottom="9dp"
                         android:paddingTop="9dp"
-                        android:layout_marginBottom="10dp"
-                        android:inputType="phone" />
+                        android:paddingBottom="9dp"
+                        android:textColor="#ff1a102c"
+                        android:textSize="18dp" />
                 </LinearLayout>
 
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="vertical"
+                    android:touchscreenBlocksFocus="false">
+
+                    <EditText
+                        android:id="@+id/EDTPhoneNumber"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@android:drawable/editbox_background"
+                        android:ems="10"
+                        android:hint="@string/PhoneNumber"
+                        android:inputType="phone"
+                        android:maxLength="15"
+                        android:paddingTop="9dp"
+                        android:paddingBottom="9dp"
+                        android:textColor="#ff1a102c"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="vertical"
+                    android:touchscreenBlocksFocus="false">
+
+                    <EditText
+                        android:id="@+id/EDTpassword"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@android:drawable/editbox_background"
+                        android:ems="10"
+                        android:gravity="left"
+                        android:hint="@string/AddPassword"
+                        android:inputType="textPassword"
+                        android:maxLength="50"
+                        android:paddingTop="9dp"
+                        android:paddingBottom="9dp"
+                        android:textColor="#ff1a102c"
+                        android:textSize="18dp" />
+
+                    <EditText
+                        android:id="@+id/EDTpasswordR"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@android:drawable/editbox_background"
+                        android:ems="10"
+                        android:gravity="left"
+                        android:hint="@string/RepeatPassword"
+                        android:inputType="textPassword"
+                        android:maxLength="50"
+                        android:paddingTop="9dp"
+                        android:paddingBottom="9dp"
+                        android:textColor="#ff1a102c"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="vertical"
+                    android:touchscreenBlocksFocus="false">
+
+                    <ListView
+                        android:id="@+id/LVmainRegions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="800px"
+                        android:choiceMode="singleChoice"
+                        android:descendantFocusability="beforeDescendants" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:layoutDirection="rtl"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layoutDirection="rtl"
+                android:orientation="vertical"
                 android:paddingRight="15dp">
 
                 <Button
