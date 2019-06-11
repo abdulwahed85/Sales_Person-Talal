@@ -79,5 +79,13 @@
 
     </string-array>
     <string name="UserId">Marya</string>
+    <string name="Submit">submitCommission</string>
+    <string name="South">South Sales Amount</string>
+    <string name="Coastal">Coastal Sales Amount</string>
+    <string name="North">North Sales amount</string>
+    <string name="East">East Sales Amount</string>
+    <string name="Lebanon">Lebanon Sales amount</string>
+    <string name="AddCommission">addCommission</string>
+    <string name="submitCom">submitCom</string>
 
 </resources>

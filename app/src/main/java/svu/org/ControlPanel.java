@@ -7,23 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Spinner;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,7 +41,7 @@ public class ControlPanel extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (this.getIntent().hasExtra("userID")) {
+        /*if (this.getIntent().hasExtra("userID")) {
             userID = this.getIntent().getStringExtra("userID");
             userID = "e080e402-9040-4078-99e1-81fd86ff3afe";
         }
@@ -68,12 +61,12 @@ public class ControlPanel extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
         setContentView(R.layout.activity_control_panel);
 
-        spinner = (Spinner) findViewById(R.id.spinner);
-        spinner2 = (Spinner) findViewById(R.id.spinner2);
+        spinner = (Spinner) findViewById(R.id.spinnerM);
+        spinner2 = (Spinner) findViewById(R.id.spinnerY);
         listView= (ListView) findViewById(R.id.LVNews);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Months_array, android.R.layout.simple_spinner_item);
@@ -88,10 +81,10 @@ public class ControlPanel extends AppCompatActivity {
         // Apply the adapter to the spinner
         spinner2.setAdapter(adapter2);
 
-        if (!Arrays.asList(roles).contains("Admin")) {
+       /* if (!Arrays.asList(roles).contains("Admin")) {
             Button resetButton=(Button)findViewById(R.id.butAdmin);
             resetButton.setVisibility(View.INVISIBLE); //To set visible
-        }
+        }*/
     }
 
     public void search(View view) {
