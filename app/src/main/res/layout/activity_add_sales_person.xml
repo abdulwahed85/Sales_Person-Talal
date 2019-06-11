@@ -45,7 +45,7 @@
                 android:text="MainRegion" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spinnerM"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -137,7 +137,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/bulogotype"
+                android:id="@+id/Submit"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp"
                 android:layout_weight="1"

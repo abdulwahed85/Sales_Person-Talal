@@ -91,7 +91,7 @@ public class UserListAdapter extends ArrayAdapter <User> {
         imageButtonAddCom.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                Intent intent = new Intent(context, EditUserCommission.class);
+                Intent intent = new Intent(context, AddCommission.class);
 
                 context.startActivity(intent);
 
