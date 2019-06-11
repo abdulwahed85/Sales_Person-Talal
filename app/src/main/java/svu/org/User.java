@@ -2,21 +2,21 @@ package svu.org;
 
 public class User {
 
+    String id;
+    String name;
 
+    public User(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-        String name;
+    public String getId() {
 
-        public User(String name) {
+        return id;
+    }
 
-            this.name = name;
+    public String toString() {
 
-        }
-
-
-
-        public String getName() {
-            return name;
-        }
-
-
+        return name;
+    }
 }
