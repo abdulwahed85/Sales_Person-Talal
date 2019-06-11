@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import java.util.ArrayList;
@@ -86,6 +87,11 @@ public class ControlPanel extends AppCompatActivity {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner2.setAdapter(adapter2);
+
+        if (!Arrays.asList(roles).contains("Admin")) {
+            Button resetButton=(Button)findViewById(R.id.butAdmin);
+            resetButton.setVisibility(View.INVISIBLE); //To set visible
+        }
     }
 
     public void search(View view) {

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminControlPanel"></activity>
+        <activity android:name=".EditMyProfileActivity"></activity>
+        <activity android:name=".AdminControlPanel" />
         <activity android:name=".AddCommission" />
         <activity android:name=".AddSalesPerson" />
         <activity android:name=".Registration" />
