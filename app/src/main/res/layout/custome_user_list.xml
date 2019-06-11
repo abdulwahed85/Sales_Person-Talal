@@ -23,10 +23,12 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imageButtonView"
+                android:id="@+id/viewUser"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="onViewUser"
                 app:srcCompat="@drawable/eye" />
 
             <ImageButton
@@ -34,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:clickable="true"
                 app:srcCompat="@drawable/edit26" />
 
             <ImageButton
@@ -41,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:clickable="true"
                 app:srcCompat="@drawable/trash26" />
 
             <ImageButton
@@ -48,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:clickable="true"
                 app:srcCompat="@drawable/moneybag26" />
         </LinearLayout>
     </LinearLayout>

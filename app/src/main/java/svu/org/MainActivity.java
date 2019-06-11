@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
     EditText UserName;
     EditText Password;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+   // @Override
+   /* protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (this.getIntent().hasExtra("message")) {
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View view){
 
-        TextView EDTUserName = (TextView) findViewById(R.id.EDTFullName);
+       TextView EDTUserName = (TextView) findViewById(R.id.EDTFullName);
         TextView EDTpassword = (TextView) findViewById(R.id.EDTpassword);
 
         HashMap<String, String> map = new HashMap<>();
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("userID",json.get("userID").toString());
                         intent.putExtra("roles",json.get("roles").toString());
                         startActivity(intent);
-                    } else {
+                   } else {
                         Toast.makeText(MainActivity.this, "Username / Password are not correct or maybe user is not exists", Toast.LENGTH_LONG).show();
                     }
                 } else if (json.has("error_description")) {
@@ -66,6 +66,32 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }.execute(httpCall);
+
+
+    }
+
+    public void login(View view){
+
+        Intent intent = new Intent(this, ControlPanel.class);
+        startActivity(intent);
+
+
+    }*/
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void login(View view){
+
+        //if(UserName.getText().toString().equals("admin") && Password.getText().toString().equals("admin")){
+
+        //correcct password
+        // }else{}
+        //wrong password
+        Intent intent = new Intent(this, ControlPanel.class);
+        startActivity(intent);
 
 
     }

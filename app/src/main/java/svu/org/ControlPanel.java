@@ -48,7 +48,7 @@ public class ControlPanel extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (this.getIntent().hasExtra("userID")) {
+        /*if (this.getIntent().hasExtra("userID")) {
             userID = this.getIntent().getStringExtra("userID");
             userID = "e080e402-9040-4078-99e1-81fd86ff3afe";
         }
@@ -68,7 +68,7 @@ public class ControlPanel extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
         setContentView(R.layout.activity_control_panel);
 
@@ -88,10 +88,10 @@ public class ControlPanel extends AppCompatActivity {
         // Apply the adapter to the spinner
         spinner2.setAdapter(adapter2);
 
-        if (!Arrays.asList(roles).contains("Admin")) {
+       /* if (!Arrays.asList(roles).contains("Admin")) {
             Button resetButton=(Button)findViewById(R.id.butAdmin);
             resetButton.setVisibility(View.INVISIBLE); //To set visible
-        }
+        }*/
     }
 
     public void search(View view) {
