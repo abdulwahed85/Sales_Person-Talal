@@ -153,6 +153,16 @@ public class ControlPanel extends AppCompatActivity {
 
     }
 
+    public void editProfile(View view) {
+        Intent intent = new Intent(this, EditMyProfileActivity.class);
+
+        intent.putExtra("userID",userID);
+        intent.putExtra("roles", strRoles);
+
+        startActivity(intent);
+
+    }
+
     public void adminPage(View view) {
         Intent intent=new Intent(this,AdminControlPanel.class);
 

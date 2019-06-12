@@ -196,6 +196,11 @@ public class AdminControlPanel extends AppCompatActivity {
                     // Perform action on click
                     Intent intent = new Intent(context, ViewUserData.class);
 
+                    intent.putExtra("empNumber",heroList.get(position).empNumber);
+                    intent.putExtra("userID",heroList.get(position).id);
+                    intent.putExtra("userName",heroList.get(position).name);
+                    intent.putExtra("roles", strRoles);
+
                     context.startActivity(intent);
 
                 }

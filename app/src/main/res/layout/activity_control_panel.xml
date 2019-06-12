@@ -123,6 +123,7 @@
                 android:drawableRight="@drawable/newsa1"
                 android:drawablePadding="8dp"
 
+                android:onClick="editProfile"
                 android:text="@string/Edit"
                 android:textAlignment="textStart"
                 android:textColor="@color/darkblue"
