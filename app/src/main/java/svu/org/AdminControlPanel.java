@@ -25,6 +25,9 @@ import java.util.List;
 
 public class AdminControlPanel extends AppCompatActivity {
 
+    String userID, strRoles;
+    String[] roles;
+
     //a List of type hero for holding list items
     List<User> heroList;
     UserListAdapter adapter = null;
@@ -36,6 +39,27 @@ public class AdminControlPanel extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_control_panel);
+
+        if (this.getIntent().hasExtra("userID")) {
+            userID = this.getIntent().getStringExtra("userID");
+        }
+
+        if (this.getIntent().hasExtra("roles")) {
+            strRoles = this.getIntent().getStringExtra("roles");
+
+            JSONArray jsonArray = null;
+            try {
+                jsonArray = new JSONArray(strRoles);
+
+                roles = new String[jsonArray.length()];
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    roles[i] = jsonArray.getString(i);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
         HttpCall httpCall = new HttpCall();
         httpCall.setMethodtype(HttpCall.GET);
@@ -49,10 +73,10 @@ public class AdminControlPanel extends AppCompatActivity {
 
                 //initializing objects
                 heroList = new ArrayList<>();
-                listView = (ListView) findViewById(R.id.listViewUsers);
+                listView = findViewById(R.id.listViewUsers);
 
                 for(int i=0; i < json.length(); ++i) {
-                    heroList.add(new User(json.getJSONObject(i).get("UserId").toString(), json.getJSONObject(i).get("FullName").toString()));
+                    heroList.add(new User(json.getJSONObject(i).get("UserId").toString(), json.getJSONObject(i).get("FullName").toString(), json.getJSONObject(i).get("SalePersonNumber").toString()));
                 }
                 //creating the adapter
                 adapter = new UserListAdapter(AdminControlPanel.this, R.layout.custome_user_list, heroList);
@@ -97,7 +121,7 @@ public class AdminControlPanel extends AppCompatActivity {
             //getting the view elements of the list from the view
             //ImageView imageView = view.findViewById(R.id.imageView);
             final TextView textViewName = view.findViewById(R.id.textUserId);
-            ImageButton imageButtonView= view.findViewById(R.id.imageButtonView);
+            //ImageButton imageButtonView= view.findViewById(R.id.imageButtonView);
             ImageButton imageButtonEdit= view.findViewById(R.id.imageButtonEdit);
             ImageButton imageButtonDelete= view.findViewById(R.id.imageButtonDelete);
             ImageButton imageButtonAddCom = view.findViewById(R.id.imageButtonAddCom);
@@ -141,6 +165,29 @@ public class AdminControlPanel extends AppCompatActivity {
                             }
                         }
                     }.execute(httpCall);
+                }
+            });
+
+            imageButtonEdit.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // Perform action on click
+                    Intent intent = new Intent(context, EditUserData.class);
+
+                    context.startActivity(intent);
+
+                }
+            });
+
+            imageButtonAddCom.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // Perform action on click
+                    Intent intent = new Intent(context, AddCommission.class);
+                    intent.putExtra("empNumber",heroList.get(position).empNumber);
+                    intent.putExtra("userID",heroList.get(position).id);
+                    intent.putExtra("roles", strRoles);
+
+                    context.startActivity(intent);
+
                 }
             });
 

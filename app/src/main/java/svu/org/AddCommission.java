@@ -7,12 +7,22 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.HashMap;
 public class AddCommission extends AppCompatActivity {
 
 
-
+    String userID, empNumber, strRoles;
     Spinner spinner,spinner2;
+    String[] roles, months_array = {"0", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +43,94 @@ public class AddCommission extends AppCompatActivity {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner2.setAdapter(adapter2);
+
+        if (this.getIntent().hasExtra("empNumber")) {
+            empNumber = this.getIntent().getStringExtra("empNumber");
+            TextView TVsalesPersonNumber = (TextView) findViewById(R.id.TVsalesPersonNumber);
+            TVsalesPersonNumber.setText("SalesPerson Number:    " + empNumber);
+        }
+
+        if (this.getIntent().hasExtra("userID")) {
+            userID = this.getIntent().getStringExtra("userID");
+        }
+
+        if (this.getIntent().hasExtra("roles")) {
+            String strRoles = this.getIntent().getStringExtra("roles");
+
+            JSONArray jsonArray = null;
+            try {
+                jsonArray = new JSONArray(strRoles);
+
+                roles = new String[jsonArray.length()];
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    roles[i] = jsonArray.getString(i);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (!this.getIntent().hasExtra("empNumber")){
+            TextView TVsalesPersonNumber = (TextView) findViewById(R.id.TVsalesPersonNumber);
+            TVsalesPersonNumber.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void submit(View view) {
+        TextView ESouth = (TextView) findViewById(R.id.ESouth);
+        TextView ECoast = (TextView) findViewById(R.id.ECoast);
+        TextView ENorth = (TextView) findViewById(R.id.ENorth);
+        TextView EEast = (TextView) findViewById(R.id.EEast);
+        TextView Elebanon = (TextView) findViewById(R.id.Elebanon);
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("UserId", userID);
+        map.put("Month", Integer.toString(Arrays.asList(months_array).indexOf(spinner.getSelectedItem())));
+        map.put("Year", spinner2.getSelectedItem().toString());
+
+        map.put("SouthSalesAmount", ESouth.getText().toString());
+        map.put("CoastalSalesAmount", ECoast.getText().toString());
+        map.put("NorthSalesAmount", ENorth.getText().toString());
+        map.put("EastSalesAmount", EEast.getText().toString());
+        map.put("LebanonSalesAmount", Elebanon.getText().toString());
+
+        HttpCall httpCall = new HttpCall();
+        httpCall.setMethodtype(HttpCall.POST);
+        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/SalesTransaction/Create");
+        httpCall.setParams(map);
+
+        new HttpRequest() {
+            @Override
+            protected void onResponse(String response) throws JSONException {
+                JSONObject json;
+                super.onResponse(response);
+                if( response.equals("200")) {
+                    json = new JSONObject("{'result':'User Report has been added successfully'}");
+                } else {
+                    json = new JSONObject(response);
+                }
+                if (json.has("result")) {
+                    Toast.makeText(AddCommission.this, json.get("result").toString(), Toast.LENGTH_LONG).show();
+                    TextView ESouth = (TextView) findViewById(R.id.ESouth);
+                    TextView ECoast = (TextView) findViewById(R.id.ECoast);
+                    TextView ENorth = (TextView) findViewById(R.id.ENorth);
+                    TextView EEast = (TextView) findViewById(R.id.EEast);
+                    TextView Elebanon = (TextView) findViewById(R.id.Elebanon);
+
+                    ESouth.setText(null);
+                    ECoast.setText(null);
+                    ENorth.setText(null);
+                    EEast.setText(null);
+                    Elebanon.setText(null);
+
+                } else if (json.has("Message")) {
+                    Toast.makeText(AddCommission.this, json.get("Message").toString(), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(AddCommission.this, "Fatal Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }.execute(httpCall);
     }
 
 

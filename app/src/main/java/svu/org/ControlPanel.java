@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
@@ -17,12 +18,13 @@ import java.util.HashMap;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ControlPanel extends AppCompatActivity {
 
-    String userID;
+    String userID, strRoles ;
     String[] roles;
 
     Spinner spinner,spinner2;
@@ -41,13 +43,13 @@ public class ControlPanel extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*if (this.getIntent().hasExtra("userID")) {
+        if (this.getIntent().hasExtra("userID")) {
             userID = this.getIntent().getStringExtra("userID");
-            userID = "e080e402-9040-4078-99e1-81fd86ff3afe";
+            //userID = "e080e402-9040-4078-99e1-81fd86ff3afe";
         }
 
         if (this.getIntent().hasExtra("roles")) {
-            String strRoles = this.getIntent().getStringExtra("roles");
+            strRoles = this.getIntent().getStringExtra("roles");
 
             JSONArray jsonArray = null;
             try {
@@ -61,7 +63,7 @@ public class ControlPanel extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
 
         setContentView(R.layout.activity_control_panel);
 
@@ -81,10 +83,13 @@ public class ControlPanel extends AppCompatActivity {
         // Apply the adapter to the spinner
         spinner2.setAdapter(adapter2);
 
-       /* if (!Arrays.asList(roles).contains("Admin")) {
-            Button resetButton=(Button)findViewById(R.id.butAdmin);
-            resetButton.setVisibility(View.INVISIBLE); //To set visible
-        }*/
+        if (!Arrays.asList(roles).contains("Admin")) {
+            Button butAdmin = (Button)findViewById(R.id.butAdmin);
+            butAdmin.setVisibility(View.INVISIBLE); //To set visible
+        } else if (!Arrays.asList(roles).contains("SalesPerson")){
+            Button butAddComm = (Button)findViewById(R.id.Submit);
+            butAddComm.setVisibility(View.INVISIBLE); //To set visible
+        }
     }
 
     public void search(View view) {
@@ -139,14 +144,23 @@ public class ControlPanel extends AppCompatActivity {
     }
 
     public void addCommission(View view) {
-        Intent intent1=new Intent(this,AddCommission.class);
-        startActivity(intent1);
+        Intent intent = new Intent(this,AddCommission.class);
+
+        intent.putExtra("userID",userID);
+        intent.putExtra("roles", strRoles);
+
+        startActivity(intent);
 
     }
 
     public void adminPage(View view) {
-        Intent intent2=new Intent(this,AdminControlPanel.class);
-        startActivity(intent2);
+        Intent intent=new Intent(this,AdminControlPanel.class);
+
+        intent.putExtra("userID",userID);
+        intent.putExtra("roles", strRoles);
+
+
+        startActivity(intent);
 
     }
 

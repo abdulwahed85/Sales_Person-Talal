@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     EditText Password;
 
    // @Override
-   /* protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (this.getIntent().hasExtra("message")) {
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View view){
 
-       TextView EDTUserName = (TextView) findViewById(R.id.EDTFullName);
+        TextView EDTUserName = (TextView) findViewById(R.id.EDTFullName);
         TextView EDTpassword = (TextView) findViewById(R.id.EDTpassword);
 
         HashMap<String, String> map = new HashMap<>();
@@ -70,36 +70,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void login(View view){
-
-        Intent intent = new Intent(this, ControlPanel.class);
-        startActivity(intent);
-
-
-    }*/
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-
-    public void login(View view){
-
-        //if(UserName.getText().toString().equals("admin") && Password.getText().toString().equals("admin")){
-
-        //correcct password
-        // }else{}
-        //wrong password
-        Intent intent = new Intent(this, ControlPanel.class);
-        startActivity(intent);
-
-
-    }
-
     public void register(View view) {
         Intent intent1=new Intent(this,Registration.class);
         startActivity(intent1);
 
     }
-
 }
