@@ -121,7 +121,7 @@ public class AdminControlPanel extends AppCompatActivity {
             //getting the view elements of the list from the view
             //ImageView imageView = view.findViewById(R.id.imageView);
             final TextView textViewName = view.findViewById(R.id.textUserId);
-            //ImageButton imageButtonView= view.findViewById(R.id.imageButtonView);
+            ImageButton imageButtonView= view.findViewById(R.id.viewUser);
             ImageButton imageButtonEdit= view.findViewById(R.id.imageButtonEdit);
             ImageButton imageButtonDelete= view.findViewById(R.id.imageButtonDelete);
             ImageButton imageButtonAddCom = view.findViewById(R.id.imageButtonAddCom);
@@ -190,6 +190,17 @@ public class AdminControlPanel extends AppCompatActivity {
 
                 }
             });
+
+            imageButtonView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // Perform action on click
+                    Intent intent = new Intent(context, ViewUserData.class);
+
+                    context.startActivity(intent);
+
+                }
+            });
+
 
             //finally returning the view
             return view;
