@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -89,13 +90,17 @@ public class HttpRequest extends AsyncTask<HttpCall, String, String> {
                     responseCode != HttpURLConnection.HTTP_OK &&
                     responseCode != HttpURLConnection.HTTP_CREATED &&
                     responseCode != HttpURLConnection.HTTP_BAD_REQUEST &&
+                    responseCode != HttpURLConnection.HTTP_NOT_FOUND &&
                     responseCode != HttpURLConnection.HTTP_INTERNAL_ERROR)
                 ) {
                 String line;
                 BufferedReader br;
-                if (!(responseCode == HttpURLConnection.HTTP_BAD_REQUEST || responseCode == HttpURLConnection.HTTP_INTERNAL_ERROR)) {
+
+                if (responseCode == HttpURLConnection.HTTP_NOT_FOUND) {
+                    br = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(("404").getBytes("UTF-8"))));
+                } else if (!(responseCode == HttpURLConnection.HTTP_BAD_REQUEST || responseCode == HttpURLConnection.HTTP_INTERNAL_ERROR)) {
                     br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                } else {
+                } else{
                     br = new BufferedReader(new InputStreamReader(urlConnection.getErrorStream()));
                 }
                 while((line = br.readLine()) != null){

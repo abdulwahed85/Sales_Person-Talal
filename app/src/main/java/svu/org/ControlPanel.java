@@ -17,6 +17,7 @@ import java.util.HashMap;
 
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -154,12 +155,37 @@ public class ControlPanel extends AppCompatActivity {
     }
 
     public void editProfile(View view) {
-        Intent intent = new Intent(this, EditMyProfileActivity.class);
 
-        intent.putExtra("userID",userID);
-        intent.putExtra("roles", strRoles);
+        HashMap<String, String> map = new HashMap<>();
 
-        startActivity(intent);
+        map.put("userId", userID);
+
+        HttpCall httpCall = new HttpCall();
+        httpCall.setMethodtype(HttpCall.GET);
+        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/UserManagement/GetUserById");
+        httpCall.setParams(map);
+
+        new HttpRequest() {
+            @Override
+            protected void onResponse(String response) throws JSONException {
+                JSONObject json;
+                super.onResponse(response);
+                if( response.equals("404")) {
+                    json = new JSONObject("{'result':'User has been not founded'}");
+                } else {
+                    json = new JSONObject(response);
+                }
+                if (json.has("result")) {
+                    Toast.makeText(ControlPanel.this, json.get("result").toString(), Toast.LENGTH_LONG).show();
+                } else if (json.has("UserId")) {
+                    Intent intent = new Intent(ControlPanel.this, EditMyProfileActivity.class);
+                    intent.putExtra("user", response);
+
+                    startActivity(intent);
+
+                }
+            }
+        }.execute(httpCall);
 
     }
 
