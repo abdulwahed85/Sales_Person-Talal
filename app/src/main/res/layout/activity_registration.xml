@@ -184,10 +184,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="800px"
                         android:choiceMode="singleChoice"
-                        android:descendantFocusability="beforeDescendants" />
+                        android:descendantFocusability="beforeDescendants"
+                        android:textDirection="ltr" />
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layoutDirection="rtl"
+                android:orientation="vertical"
+                android:paddingRight="15dp">
+
+                <Button
+                    android:id="@+id/buttonLoadPicture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:onClick="ChooseImage"
+                    android:text="Upload Image" />
+
+                <ImageView
+                    android:id="@+id/imgView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+        </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

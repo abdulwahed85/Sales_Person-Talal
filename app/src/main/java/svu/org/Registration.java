@@ -1,11 +1,18 @@
 package svu.org;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,16 +21,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Registration extends AppCompatActivity {
     String mainRegion = "0";
+    private static int RESULT_LOAD_IMAGE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        Button buttonLoadImage = (Button) findViewById(R.id.buttonLoadPicture);
+
 
 
         final HttpCall[] httpCall = {new HttpCall()};
@@ -41,7 +55,7 @@ public class Registration extends AppCompatActivity {
 
                 listView = findViewById(R.id.LVmainRegions);
 
-                for(int i = 0; i < json.length(); ++ i) {
+                for (int i = 0; i < json.length(); ++i) {
                     list.add(new Region(((json.getJSONObject(i)).get("RegionId")).toString(), ((json.getJSONObject(i)).get("RegionName")).toString()));
 
                 }
@@ -53,6 +67,7 @@ public class Registration extends AppCompatActivity {
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     String mainRegion1 = "0";
+
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         mainRegion = ((Region) adapter[0].getItem(i)).getId();
@@ -73,9 +88,9 @@ public class Registration extends AppCompatActivity {
         TextView EDTpassword = (TextView) findViewById(R.id.EDTpassword);
         TextView EDTpasswordR = (TextView) findViewById(R.id.EDTpasswordR);
 
-        if((EDTpassword.getText().toString()).equals(EDTpasswordR.getText().toString())) {
+        if ((EDTpassword.getText().toString()).equals(EDTpasswordR.getText().toString())) {
 
-            if(mainRegion != "0") {
+            if (mainRegion != "0") {
 
 
                 HashMap<String, String> map = new HashMap<>();
@@ -98,7 +113,7 @@ public class Registration extends AppCompatActivity {
                     protected void onResponse(String response) throws JSONException {
                         JSONObject json;
                         super.onResponse(response);
-                        if( response.equals("200")) {
+                        if (response.equals("200")) {
                             json = new JSONObject("{'result':'User has been created successfully'}");
                         } else {
                             json = new JSONObject(response);
@@ -120,6 +135,33 @@ public class Registration extends AppCompatActivity {
             }
         } else {
             Toast.makeText(this, "Password & Confirm password are not matched", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void ChooseImage(View view){
+
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, RESULT_LOAD_IMAGE);
+    }
+    @Override
+    protected void onActivityResult(int reqCode, int resultCode, Intent data) {
+        super.onActivityResult(reqCode, resultCode, data);
+        ImageView imageView1 = (ImageView) findViewById(R.id.imgView);
+
+        if (resultCode == RESULT_OK) {
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                imageView1.setImageBitmap(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+            }
+
+        }else {
+            Toast.makeText(this, "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
     }
 }
