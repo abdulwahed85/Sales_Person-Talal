@@ -21,7 +21,7 @@ public class EditMyProfileActivity extends AppCompatActivity {
 
     JSONObject user;
     String mainRegion = "0";
-    int mainRegionIndex;
+    int mainRegionIndex = -1;
 
 
     String UserId, userIDx, strRoles;
@@ -95,7 +95,7 @@ public class EditMyProfileActivity extends AppCompatActivity {
 
                         final ArrayAdapter[] adapter = {new ArrayAdapter(EditMyProfileActivity.this, android.R.layout.simple_list_item_single_choice, list)};
                         listView.setAdapter(adapter[0]);
-                        if(mainRegionIndex > 0){
+                        if(mainRegionIndex > -1){
                             listView.setItemChecked(mainRegionIndex,true);
                         }
 
