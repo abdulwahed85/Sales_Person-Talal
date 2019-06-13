@@ -40,9 +40,9 @@ public class Registration extends AppCompatActivity {
 
 
 
-        final HttpCall[] httpCall = {new HttpCall()};
-        httpCall[0].setMethodtype(HttpCall.GET);
-        httpCall[0].setUrl("https://esalesperson.azurewebsites.net/api/Regions/GetRegions");
+        HttpCall httpCall = new HttpCall();
+        httpCall.setMethodtype(HttpCall.GET);
+        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/Regions/GetRegions");
 
 
         new HttpRequest() {
@@ -75,7 +75,7 @@ public class Registration extends AppCompatActivity {
                     }
                 });
             }
-        }.execute(httpCall[0]);
+        }.execute(httpCall);
 
     }
 

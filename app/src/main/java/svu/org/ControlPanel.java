@@ -43,6 +43,15 @@ public class ControlPanel extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_control_panel);
+
+        if (this.getIntent().hasExtra("message")) {
+            String message = this.getIntent().getStringExtra("message");
+            if(message.length() > 0 ) {
+                Toast.makeText(ControlPanel.this, message, Toast.LENGTH_LONG).show();
+                message = "";
+            }
+        }
 
         if (this.getIntent().hasExtra("userID")) {
             userID = this.getIntent().getStringExtra("userID");
@@ -66,7 +75,7 @@ public class ControlPanel extends AppCompatActivity {
             }
         }
 
-        setContentView(R.layout.activity_control_panel);
+
 
         spinner = (Spinner) findViewById(R.id.spinnerM);
         spinner2 = (Spinner) findViewById(R.id.spinnerY);
@@ -180,6 +189,8 @@ public class ControlPanel extends AppCompatActivity {
                 } else if (json.has("UserId")) {
                     Intent intent = new Intent(ControlPanel.this, EditMyProfileActivity.class);
                     intent.putExtra("user", response);
+                    intent.putExtra("userIDx", userID);
+                    intent.putExtra("roles", strRoles);
 
                     startActivity(intent);
 
