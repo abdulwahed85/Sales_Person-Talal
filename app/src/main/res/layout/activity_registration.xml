@@ -189,31 +189,49 @@
                 </LinearLayout>
             </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="ltr"
+            android:orientation="vertical"
+            android:paddingRight="15dp">
+
             <LinearLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layoutDirection="rtl"
-                android:orientation="vertical"
-                android:paddingRight="15dp">
+                android:layoutDirection="ltr"
+                android:orientation="horizontal">
+
+
 
                 <Button
                     android:id="@+id/buttonLoadPicture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0"
+                    android:drawablePadding="4dp"
                     android:onClick="ChooseImage"
+                    android:paddingRight="5dp"
                     android:text="Upload Image" />
 
                 <ImageView
-                    android:id="@+id/imgView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
+                android:id="@+id/imgView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="0"
+                android:drawablePadding="4dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
 
 
 
         </LinearLayout>
+        </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

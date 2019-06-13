@@ -154,7 +154,10 @@ public class Registration extends AppCompatActivity {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                imageView1.setImageBitmap(selectedImage);
+                Bitmap bt=Bitmap.createScaledBitmap(selectedImage, 150, 150, false);
+
+                imageView1.setImageBitmap(bt);
+                //imageView1.setImageBitmap(selectedImage);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
