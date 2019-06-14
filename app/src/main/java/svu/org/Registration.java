@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,8 +22,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -138,12 +146,31 @@ public class Registration extends AppCompatActivity {
         }
     }
 
+    //method to get the file path from uri
+    public String getPath(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        String document_id = cursor.getString(0);
+        document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
+        cursor.close();
+
+        cursor = getContentResolver().query(
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+        cursor.moveToFirst();
+        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+        cursor.close();
+
+        return path;
+    }
+
     public void ChooseImage(View view){
 
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, RESULT_LOAD_IMAGE);
     }
+
     @Override
     protected void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
@@ -152,12 +179,66 @@ public class Registration extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             try {
                 final Uri imageUri = data.getData();
+
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+
+                /*String charset = "UTF-8";
+                String requestURL = "https://esalesperson.azurewebsites.net/api/Account/PostUserImage";
+
+                MultipartUtility multipart = null;
+                try {
+                    multipart = new MultipartUtility(requestURL, charset);
+                    multipart.addFilePart("image", new File(imageUri.getPath()));
+                    String response = multipart.finish(); // response from server.
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
+
+                ByteArrayOutputStream byteArrayOutputStreamObject = new ByteArrayOutputStream();
+                selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStreamObject);
+
+                byte[] byteArrayVar = byteArrayOutputStreamObject.toByteArray();
+
+                final String ConvertImage = Base64.encodeToString(byteArrayVar, Base64.DEFAULT);
+
                 Bitmap bt=Bitmap.createScaledBitmap(selectedImage, 150, 150, false);
 
                 imageView1.setImageBitmap(bt);
                 //imageView1.setImageBitmap(selectedImage);
+
+                HashMap<String, String> map = new HashMap<>();
+
+
+                map.put("image", ConvertImage);
+
+                HttpCall httpCallImage = new HttpCall();
+                httpCallImage.setMethodtype(HttpCallImage.POST);
+                httpCallImage.setUrl("https://esalesperson.azurewebsites.net/api/Account/PostUserImage");
+                httpCallImage.setParams(map);
+
+                new HttpRequest() {
+                    @Override
+                    protected void onResponse(String response) throws JSONException {
+                        JSONObject json;
+                        super.onResponse(response);
+                        if (response.equals("200")) {
+                            json = new JSONObject("{'result':'User has been created successfully'}");
+                        } else {
+                            json = new JSONObject(response);
+                        }
+                        if (json.has("result")) {
+                            Intent intent = new Intent(Registration.this, MainActivity.class);
+                            intent.putExtra("message", json.get("result").toString());
+                            startActivity(intent);
+                        } else if (json.has("Message")) {
+                            Toast.makeText(Registration.this, json.get("Message").toString(), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(Registration.this, "Fatal Error", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }.execute(httpCallImage);
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();

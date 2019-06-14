@@ -1,20 +1,17 @@
 package svu.org;
 
-
-
-import android.app.ProgressDialog;
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.widget.ProgressBar;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -27,7 +24,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HttpRequest extends AsyncTask<HttpCall, String, String> {
+public class HttpRequestImage extends AsyncTask<HttpCallImage, String, String> {
 
     public static final int READ_TIMEOUT = 15000;
     public static final int CONNECTION_TIMEOUT = 15000;
@@ -37,14 +34,14 @@ public class HttpRequest extends AsyncTask<HttpCall, String, String> {
         // Create Show ProgressBar
     }
 
-    private String getDataString(HashMap<String,String> params, int methodType) throws UnsupportedEncodingException {
+    private String getDataString(HashMap<String, FileOutputStream> params, int methodType) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean isFirst = true;
         if(params != null) {
-            for (Map.Entry<String, String> entry : params.entrySet()) {
+            for (Map.Entry<String, FileOutputStream> entry : params.entrySet()) {
                 if (isFirst) {
                     isFirst = false;
-                    if (methodType == HttpCall.GET) {
+                    if (methodType == HttpCallImage.GET) {
                         result.append("?");
                     }
                 } else {
@@ -52,7 +49,7 @@ public class HttpRequest extends AsyncTask<HttpCall, String, String> {
                 }
                 result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
                 result.append("=");
-                result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+                result.append(URLEncoder.encode(String.valueOf(entry.getValue()), "UTF-8"));
             }
         }
 
@@ -60,21 +57,18 @@ public class HttpRequest extends AsyncTask<HttpCall, String, String> {
     }
 
     @Override
-    protected String doInBackground(HttpCall... params) {
-        HttpCall httpcall = params[0];
-        //String REQUEST_METHOD = params[0];
-        //String httpCall = params[1];
+    protected String doInBackground(HttpCallImage... params) {
+        HttpCallImage httpcall = params[0];
         HttpURLConnection urlConnection = null;
         StringBuilder result = new StringBuilder();
-        //JSONArray json = new JSONArray();
 
         try {
 
             String dataParams = getDataString(httpcall.getParams(), httpcall.getMethodtype());
-            URL url = new URL(httpcall.getMethodtype() == HttpCall.GET ? httpcall.getUrl() +  dataParams: httpcall.getUrl());
+            URL url = new URL(httpcall.getMethodtype() == HttpCallImage.GET ? httpcall.getUrl() +  dataParams: httpcall.getUrl());
             urlConnection =(HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod(httpcall.getMethodtype() == HttpCall.GET ? "GET" : "POST");
-            if(httpcall.getParams() != null && httpcall.getMethodtype() == HttpCall.POST) {
+            urlConnection.setRequestMethod(httpcall.getMethodtype() == HttpCallImage.GET ? "GET" : "POST");
+            if(httpcall.getParams() != null && httpcall.getMethodtype() == HttpCallImage.POST) {
                 OutputStream os = urlConnection.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
                 writer.append(dataParams);
@@ -91,11 +85,11 @@ public class HttpRequest extends AsyncTask<HttpCall, String, String> {
 
             if(!(
                     responseCode != HttpURLConnection.HTTP_OK &&
-                    responseCode != HttpURLConnection.HTTP_CREATED &&
-                    responseCode != HttpURLConnection.HTTP_BAD_REQUEST &&
-                    responseCode != HttpURLConnection.HTTP_NOT_FOUND &&
-                    responseCode != HttpURLConnection.HTTP_INTERNAL_ERROR)
-                ) {
+                            responseCode != HttpURLConnection.HTTP_CREATED &&
+                            responseCode != HttpURLConnection.HTTP_BAD_REQUEST &&
+                            responseCode != HttpURLConnection.HTTP_NOT_FOUND &&
+                            responseCode != HttpURLConnection.HTTP_INTERNAL_ERROR)
+            ) {
                 String line;
                 BufferedReader br;
 
@@ -110,13 +104,6 @@ public class HttpRequest extends AsyncTask<HttpCall, String, String> {
                     result.append(line);
                 }
             }
-            //if(result.length() > 0 ) {
-                //json = new JSONArray(result.toString());
-            //} else  {
-                //json = new JSONArray();
-            //}
-        //} catch (JSONException e) {
-            //e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (ProtocolException e) {
@@ -129,7 +116,6 @@ public class HttpRequest extends AsyncTask<HttpCall, String, String> {
             e.printStackTrace();
         }
 
-        //return json;
         return result.toString();
     }
 
@@ -147,3 +133,4 @@ public class HttpRequest extends AsyncTask<HttpCall, String, String> {
     }
 
 }
+
