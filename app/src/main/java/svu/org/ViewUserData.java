@@ -24,6 +24,7 @@ public class ViewUserData extends AppCompatActivity {
     TextView  TVsalesPersonNumber;
 
     String[] months_array = {"0", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    String[] years_array =  {"2015", "2016", "2017", "2018", "2019", "2020"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,47 @@ public class ViewUserData extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
+        TVmonthlyCommission = (TextView) findViewById(R.id.TTotal);
+        TSouth = (TextView) findViewById(R.id.TSouth);
+        TCoastl = (TextView) findViewById(R.id.TCoastl);
+        TNorth = (TextView) findViewById(R.id.TNorth);
+        TEast = (TextView) findViewById(R.id.TEast);
+        TLebanon = (TextView) findViewById(R.id.TLebanon);
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("userId", userID);
+
+        HttpCall httpCall = new HttpCall();
+        httpCall.setMethodtype(HttpCall.GET);
+        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/SalesTransaction/GetLatestReport");
+        httpCall.setParams(map);
+
+
+        new HttpRequest() {
+            @Override
+            protected void onResponse(String response) throws JSONException {
+                super.onResponse(response);
+
+                JSONObject json = new JSONObject(response);
+                if (json.has("Message")) {
+                    TVrsgistrationDate.setText(json.get("Message").toString());
+                } else {
+                    TSouth.setText("SouthSalesCommission:    " + json.get("SouthSalesCommission").toString());
+                    TCoastl.setText("CoastalSalesCommission:    " + json.get("CoastalSalesCommission").toString());
+                    TNorth.setText("NorthSalesCommission:    " + json.get("NorthSalesCommission").toString());
+                    TEast.setText("EastSalesCommission:    " + json.get("EastSalesCommission").toString());
+                    TLebanon.setText("LebanonSalesCommission:    " + json.get("LebanonSalesCommission").toString());
+
+                    TVmonthlyCommission.setText("Monthly Commission:    " + json.get("TotalMonthlyCommission").toString());
+
+                    spinner.setSelection(Arrays.asList(months_array).indexOf(json.get("Month").toString()));
+                    spinner2.setSelection(Arrays.asList(years_array).indexOf(json.get("Year").toString()));
+                }
+            }
+        }.execute(httpCall);
+
+
     }
 
     public void search(View view){

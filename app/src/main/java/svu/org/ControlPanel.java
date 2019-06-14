@@ -138,17 +138,9 @@ public class ControlPanel extends AppCompatActivity {
                     TVrsgistrationDate.setText("Rsgistration Date:    " + json.get("RegistrationDate").toString());
                     TVsalesPersonNumber.setText("SalesPerson Number:    " + json.get("SalePersonNumber").toString());
 
-                    //map.put("month", Integer.toString(Arrays.asList(months_array).indexOf(spinner.getSelectedItem())));
-                    //map.put("year", spinner2.getSelectedItem().toString());
-
                     spinner.setSelection(Arrays.asList(months_array).indexOf(json.get("Month").toString()));
                     spinner2.setSelection(Arrays.asList(years_array).indexOf(json.get("Year").toString()));
-
-                    //adapter
-                    //Arrays.asList(months_array).indexOf(spinner.getSelectedItem()
                 }
-
-                //TVfullName;
             }
         }.execute(httpCall);
 
