@@ -20,9 +20,9 @@ public class AddCommission extends AppCompatActivity {
 
 
     String userID, empNumber, strRoles;
+    String userMainRegion = "";
     Spinner spinner,spinner2;
     String[] roles, months_array = {"0", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +43,73 @@ public class AddCommission extends AppCompatActivity {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner2.setAdapter(adapter2);
-
+        TextView TVsalesPersonNumber = (TextView) findViewById(R.id.TVsalesPersonNumber);
         if (this.getIntent().hasExtra("empNumber")) {
             empNumber = this.getIntent().getStringExtra("empNumber");
-            TextView TVsalesPersonNumber = (TextView) findViewById(R.id.TVsalesPersonNumber);
             TVsalesPersonNumber.setText("SalesPerson Number:    " + empNumber);
+        } else {
+            TVsalesPersonNumber.setVisibility(View.INVISIBLE);
         }
 
         if (this.getIntent().hasExtra("userID")) {
             userID = this.getIntent().getStringExtra("userID");
+
+            HashMap<String, String> map = new HashMap<>();
+            map.put("UserId", userID);
+
+            HttpCall httpCall = new HttpCall();
+            httpCall.setMethodtype(HttpCall.GET);
+            httpCall.setUrl("https://esalesperson.azurewebsites.net/api/UserManagement/GetUserById");
+            httpCall.setParams(map);
+
+
+
+            new HttpRequest() {
+                @Override
+                protected void onResponse(String response) throws JSONException {
+                    JSONObject json;
+                    json = new JSONObject(response);
+
+                    if (json.has("FullName")) {
+                        TextView TVfullName = (TextView) findViewById(R.id.TVfullName);
+                        TVfullName.setText(json.get("FullName").toString());
+                        if (json.has("MainRegionId")) {
+                            userMainRegion = json.get("MainRegionId").toString();
+                            if(userMainRegion.length() > 0) {
+                                HashMap<String, String> map = new HashMap<>();
+                                map.put("id", userMainRegion);
+
+                                HttpCall httpCall = new HttpCall();
+                                httpCall.setMethodtype(HttpCall.GET);
+
+                                httpCall.setUrl("https://esalesperson.azurewebsites.net/api/Regions/GetRegion");
+                                httpCall.setParams(map);
+
+                                new HttpRequest() {
+                                    @Override
+                                    protected void onResponse(String response) throws JSONException {
+                                        JSONObject json;
+                                        json = new JSONObject(response);
+
+                                        if (json.has("RegionName")) {
+                                            TextView TVmainRegion = (TextView) findViewById(R.id.TVmainRegion);
+                                            TVmainRegion.setText(json.get("RegionName").toString());
+                                        } else if (json.has("Message")) {
+                                            Toast.makeText(AddCommission.this, json.get("Message").toString(), Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(AddCommission.this, "Fatal Error", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                }.execute(httpCall);//
+                            }
+                        }
+                    } else if (json.has("Message")) {
+                        Toast.makeText(AddCommission.this, json.get("Message").toString(), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(AddCommission.this, "Fatal Error", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }.execute(httpCall);
         }
 
         if (this.getIntent().hasExtra("roles")) {
@@ -69,11 +127,6 @@ public class AddCommission extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
-
-        if (!this.getIntent().hasExtra("empNumber")){
-            TextView TVsalesPersonNumber = (TextView) findViewById(R.id.TVsalesPersonNumber);
-            TVsalesPersonNumber.setVisibility(View.INVISIBLE);
         }
     }
 
