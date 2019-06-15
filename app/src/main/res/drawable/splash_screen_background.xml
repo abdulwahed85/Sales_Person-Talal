@@ -4,10 +4,5 @@
 
     <item android:drawable="@color/whiteback"/>
 
-    <!-- Set the Background Image-->
-    <item android:gravity="center" android:width="500dp" android:height="700dp">
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/finances128"/>
-    </item>
+
 </layer-list>
