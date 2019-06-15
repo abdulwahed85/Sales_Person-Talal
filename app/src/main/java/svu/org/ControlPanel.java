@@ -46,14 +46,6 @@ public class ControlPanel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_panel);
 
-        if (this.getIntent().hasExtra("message")) {
-            String message = this.getIntent().getStringExtra("message");
-            if(message.length() > 0 ) {
-                Toast.makeText(ControlPanel.this, message, Toast.LENGTH_LONG).show();
-                message = "";
-            }
-        }
-
         if (this.getIntent().hasExtra("userID")) {
             userID = this.getIntent().getStringExtra("userID");
             //userID = "e080e402-9040-4078-99e1-81fd86ff3afe";
@@ -76,124 +68,19 @@ public class ControlPanel extends AppCompatActivity {
             }
         }
 
-
-
-        spinner = (Spinner) findViewById(R.id.spinnerM);
-        spinner2 = (Spinner) findViewById(R.id.spinnerY);
-        listView= (ListView) findViewById(R.id.LVNews);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        adapter = ArrayAdapter.createFromResource(this, R.array.Months_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-
-        adapter2 = ArrayAdapter.createFromResource(this, R.array.Years_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner2.setAdapter(adapter2);
-
         if (!Arrays.asList(roles).contains("Admin")) {
             Button butAdmin = (Button)findViewById(R.id.butAdmin);
             butAdmin.setVisibility(View.INVISIBLE); //To set visible
         } else if (!Arrays.asList(roles).contains("SalesPerson")){
             Button butAddComm = (Button)findViewById(R.id.Submit);
             butAddComm.setVisibility(View.INVISIBLE); //To set visible
+
+            Button report = (Button)findViewById(R.id.button3);
+            report.setVisibility(View.INVISIBLE); //To set visible
         }
 
-        HashMap<String, String> map = new HashMap<>();
-        map.put("userId", userID);
-
-        HttpCall httpCall = new HttpCall();
-        httpCall.setMethodtype(HttpCall.GET);
-        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/SalesTransaction/GetLatestReport");
-        httpCall.setParams(map);
 
 
-        new HttpRequest() {
-            @Override
-            protected void onResponse(String response) throws JSONException {
-                super.onResponse(response);
-                TVmonthlyCommission = (TextView) findViewById(R.id.TVmonthlyCommission);
-                TVrsgistrationDate = (TextView) findViewById(R.id.TVrsgistrationDate);
-                TVsalesPersonNumber = (TextView) findViewById(R.id.TVsalesPersonNumber);
-
-                JSONObject json = new JSONObject(response);
-                if (json.has("Message")) {
-                    TVrsgistrationDate.setText(json.get("Message").toString());
-                } else {
-                    mobileArray = new String[5];
-                    mobileArray[0] = "SouthSalesCommission:    " + json.get("SouthSalesCommission").toString();
-                    mobileArray[1] = "CoastalSalesCommission:    " + json.get("CoastalSalesCommission").toString();
-                    mobileArray[2] = "NorthSalesCommission:    " + json.get("NorthSalesCommission").toString();
-                    mobileArray[3] = "EastSalesCommission:    " + json.get("EastSalesCommission").toString();
-                    mobileArray[4] = "LebanonSalesCommission:    " + json.get("LebanonSalesCommission").toString();
-
-                    ArrayAdapter<String> adapter3= new ArrayAdapter<String>(ControlPanel.this, android.R.layout.simple_list_item_1, mobileArray);
-
-                    listView.setAdapter(adapter3);
-
-                    TVmonthlyCommission.setText("Monthly Commission:    " + json.get("TotalMonthlyCommission").toString());
-                    TVrsgistrationDate.setText("Rsgistration Date:    " + json.get("RegistrationDate").toString());
-                    TVsalesPersonNumber.setText("SalesPerson Number:    " + json.get("SalePersonNumber").toString());
-
-                    spinner.setSelection(Arrays.asList(months_array).indexOf(json.get("Month").toString()));
-                    spinner2.setSelection(Arrays.asList(years_array).indexOf(json.get("Year").toString()));
-                }
-            }
-        }.execute(httpCall);
-
-    }
-
-    public void search(View view) {
-        //spinner = (Spinner) findViewById(R.id.spinner);
-        //spinner2 = (Spinner) findViewById(R.id.spinner2);
-
-
-
-        HashMap<String, String> map = new HashMap<>();
-        map.put("userId", userID);
-        map.put("month", Integer.toString(Arrays.asList(months_array).indexOf(spinner.getSelectedItem())));
-        map.put("year", spinner2.getSelectedItem().toString());
-
-        HttpCall httpCall = new HttpCall();
-        httpCall.setMethodtype(HttpCall.GET);
-        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/SalesTransaction/GetReport");
-        httpCall.setParams(map);
-
-
-        new HttpRequest() {
-            @Override
-            protected void onResponse(String response) throws JSONException {
-                super.onResponse(response);
-                TVmonthlyCommission = (TextView) findViewById(R.id.TVmonthlyCommission);
-                TVrsgistrationDate = (TextView) findViewById(R.id.TVrsgistrationDate);
-                TVsalesPersonNumber = (TextView) findViewById(R.id.TVsalesPersonNumber);
-
-                JSONObject json = new JSONObject(response);
-                if (json.has("Message")) {
-                    TVrsgistrationDate.setText(json.get("Message").toString());
-                } else {
-                    mobileArray = new String[5];
-                    mobileArray[0] = "SouthSalesCommission:    " + json.get("SouthSalesCommission").toString();
-                    mobileArray[1] = "CoastalSalesCommission:    " + json.get("CoastalSalesCommission").toString();
-                    mobileArray[2] = "NorthSalesCommission:    " + json.get("NorthSalesCommission").toString();
-                    mobileArray[3] = "EastSalesCommission:    " + json.get("EastSalesCommission").toString();
-                    mobileArray[4] = "LebanonSalesCommission:    " + json.get("LebanonSalesCommission").toString();
-
-                    ArrayAdapter<String> adapter3= new ArrayAdapter<String>(ControlPanel.this, android.R.layout.simple_list_item_1, mobileArray);
-
-                    listView.setAdapter(adapter3);
-
-                    TVmonthlyCommission.setText("Monthly Commission:    " + json.get("TotalMonthlyCommission").toString());
-                    TVrsgistrationDate.setText("Rsgistration Date:    " + json.get("RegistrationDate").toString());
-                    TVsalesPersonNumber.setText("SalesPerson Number:    " + json.get("SalePersonNumber").toString());
-                }
-
-                //TVfullName;
-            }
-        }.execute(httpCall);
     }
 
     public void addCommission(View view) {
@@ -284,5 +171,12 @@ public class ControlPanel extends AppCompatActivity {
         });
 
         return true;
+    }
+
+    public void userReport(View view) {
+        Intent intent = new Intent(ControlPanel.this, UserReport.class);
+        intent.putExtra("userID",userID);
+        intent.putExtra("roles",strRoles);
+        startActivity(intent);
     }
 }

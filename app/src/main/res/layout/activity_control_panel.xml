@@ -34,74 +34,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/spinnerM"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <Spinner
-                android:id="@+id/spinnerY"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="search"
-                android:text="Search" />
-
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/TVsalesPersonNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:gravity="left"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:id="@+id/TVrsgistrationDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:gravity="left"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:id="@+id/TVmonthlyCommission"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:gravity="left"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/LVNews"
-
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/whitebackground"
-            android:divider="@color/whitebackground"
-            android:dividerHeight="2dp"
-            android:gravity="left" />
+            android:orientation="vertical"/>
 
         <LinearLayout
             android:layoutDirection="ltr"
@@ -157,6 +96,22 @@
 
                 android:onClick="adminPage"
                 android:text="@string/admin"
+                android:textAlignment="textStart"
+                android:textColor="@color/darkblue"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/whiteback"
+                android:drawableRight="@drawable/newsa1"
+                android:drawablePadding="8dp"
+
+                android:onClick="userReport"
+                android:text="report"
                 android:textAlignment="textStart"
                 android:textColor="@color/darkblue"
                 android:textSize="12dp"
