@@ -215,6 +215,15 @@ public class AdminControlPanel extends AppCompatActivity {
         }
     }
 
+    public void AddNewUser(View view) {
+        Intent intent=new Intent(this,Registration.class);
+
+        intent.putExtra("userID",userID);
+        intent.putExtra("roles", strRoles);
+        startActivity(intent);
+
+    }
+
     SearchView searchView;
     Menu myMenu;
     @Override

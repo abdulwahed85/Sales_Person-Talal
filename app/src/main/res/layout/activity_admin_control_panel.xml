@@ -41,7 +41,7 @@ android:layout_height="match_parent">
         android:layout_height="45dp"
         android:layout_weight="1"
         android:background="@color/whiteback"
-
+        android:onClick="AddNewUser"
         android:drawablePadding="8dp"
         android:text="@string/AddNewUser"
         android:textAlignment="center"

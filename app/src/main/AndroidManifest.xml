@@ -31,7 +31,8 @@
         <activity android:name=".AddSalesPerson" />
         <activity android:name=".Registration" />
         <activity android:name=".ControlPanel" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
