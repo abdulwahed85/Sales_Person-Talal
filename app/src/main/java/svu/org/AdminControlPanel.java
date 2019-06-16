@@ -43,6 +43,14 @@ public class AdminControlPanel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_control_panel);
 
+        if (this.getIntent().hasExtra("message")) {
+            String message = this.getIntent().getStringExtra("message");
+            if(message.length() > 0 ) {
+                Toast.makeText(AdminControlPanel.this, message, Toast.LENGTH_LONG).show();
+                message = "";
+            }
+        }
+
         if (this.getIntent().hasExtra("userID")) {
             userID = this.getIntent().getStringExtra("userID");
         }
@@ -174,10 +182,39 @@ public class AdminControlPanel extends AppCompatActivity {
             imageButtonEdit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     // Perform action on click
-                    Intent intent = new Intent(context, EditUserData.class);
 
-                    context.startActivity(intent);
+                    HashMap<String, String> map = new HashMap<>();
 
+                    map.put("userId", heroList.get(position).getId());
+
+                    HttpCall httpCall = new HttpCall();
+                    httpCall.setMethodtype(HttpCall.GET);
+                    httpCall.setUrl("https://esalesperson.azurewebsites.net/api/UserManagement/GetUserById");
+                    httpCall.setParams(map);
+
+                    new HttpRequest() {
+                        @Override
+                        protected void onResponse(String response) throws JSONException {
+                            JSONObject json;
+                            super.onResponse(response);
+                            if( response.equals("404")) {
+                                json = new JSONObject("{'result':'User has not been not founded'}");
+                            } else {
+                                json = new JSONObject(response);
+                            }
+                            if (json.has("result")) {
+                                Toast.makeText(AdminControlPanel.this, json.get("result").toString(), Toast.LENGTH_LONG).show();
+                            } else if (json.has("UserId")) {
+                                Intent intent = new Intent(AdminControlPanel.this, EditMyProfileActivity.class);
+                                intent.putExtra("user", response);
+                                intent.putExtra("userIDx", userID);
+                                intent.putExtra("roles", strRoles);
+
+                                startActivity(intent);
+
+                            }
+                        }
+                    }.execute(httpCall);
                 }
             });
 

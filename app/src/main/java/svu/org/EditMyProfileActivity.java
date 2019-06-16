@@ -147,7 +147,13 @@ public class EditMyProfileActivity extends AppCompatActivity {
                     json = new JSONObject(response);
                 }
                 if (json.has("result")) {
-                    Intent intent = new Intent(EditMyProfileActivity.this, ControlPanel.class);
+
+                    Intent intent;
+                    if(userIDx.equals(UserId)) {
+                       intent = new Intent(EditMyProfileActivity.this, ControlPanel.class);
+                    } else {
+                        intent = new Intent(EditMyProfileActivity.this, AdminControlPanel.class);
+                    }
                     intent.putExtra("message", json.get("result").toString());
                     intent.putExtra("userID", userIDx);
                     intent.putExtra("roles", strRoles);

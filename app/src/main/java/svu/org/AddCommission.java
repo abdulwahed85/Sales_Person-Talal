@@ -1,11 +1,9 @@
 package svu.org;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,8 +60,6 @@ public class AddCommission extends AppCompatActivity {
             httpCall.setUrl("https://esalesperson.azurewebsites.net/api/UserManagement/GetUserById");
             httpCall.setParams(map);
 
-
-
             new HttpRequest() {
                 @Override
                 protected void onResponse(String response) throws JSONException {
@@ -71,7 +67,7 @@ public class AddCommission extends AppCompatActivity {
                     json = new JSONObject(response);
 
                     if (json.has("FullName")) {
-                        TextView TVfullName = (TextView) findViewById(R.id.TVfullName);
+                        TextView TVfullName = (TextView) findViewById(R.id.TVfullNameWelcome);
                         TVfullName.setText(json.get("FullName").toString());
                         if (json.has("MainRegionId")) {
                             userMainRegion = json.get("MainRegionId").toString();

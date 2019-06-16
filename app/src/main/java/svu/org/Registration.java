@@ -22,20 +22,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Registration extends AppCompatActivity {
     String mainRegion = "0";
+    String userID, strRoles;
+
     private static int RESULT_LOAD_IMAGE = 1;
 
 
@@ -46,12 +42,17 @@ public class Registration extends AppCompatActivity {
 
         Button buttonLoadImage = (Button) findViewById(R.id.buttonLoadPicture);
 
+        if (this.getIntent().hasExtra("userID")) {
+            userID = this.getIntent().getStringExtra("userID");
+        }
 
+        if (this.getIntent().hasExtra("roles")) {
+            strRoles = this.getIntent().getStringExtra("roles");
+        }
 
         HttpCall httpCall = new HttpCall();
         httpCall.setMethodtype(HttpCall.GET);
         httpCall.setUrl("https://esalesperson.azurewebsites.net/api/Regions/GetRegions");
-
 
         new HttpRequest() {
             @Override
@@ -127,7 +128,11 @@ public class Registration extends AppCompatActivity {
                             json = new JSONObject(response);
                         }
                         if (json.has("result")) {
-                            Intent intent = new Intent(Registration.this, MainActivity.class);
+                            Intent intent = new Intent(Registration.this, AdminControlPanel.class);
+
+                            intent.putExtra("userID",userID);
+                            intent.putExtra("roles", strRoles);
+
                             intent.putExtra("message", json.get("result").toString());
                             startActivity(intent);
                         } else if (json.has("Message")) {
@@ -207,7 +212,7 @@ public class Registration extends AppCompatActivity {
                 imageView1.setImageBitmap(bt);
                 //imageView1.setImageBitmap(selectedImage);
 
-                HashMap<String, String> map = new HashMap<>();
+                /*HashMap<String, String> map = new HashMap<>();
 
 
                 map.put("image", ConvertImage);
@@ -237,7 +242,7 @@ public class Registration extends AppCompatActivity {
                             Toast.makeText(Registration.this, "Fatal Error", Toast.LENGTH_LONG).show();
                         }
                     }
-                }.execute(httpCallImage);
+                }.execute(httpCallImage);*/
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -249,5 +254,3 @@ public class Registration extends AppCompatActivity {
         }
     }
 }
-
-

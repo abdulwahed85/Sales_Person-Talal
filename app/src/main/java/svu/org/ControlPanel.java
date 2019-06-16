@@ -46,6 +46,15 @@ public class ControlPanel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_panel);
 
+        if (this.getIntent().hasExtra("message")) {
+            String message = this.getIntent().getStringExtra("message");
+            if(message.length() > 0 ) {
+                Toast.makeText(ControlPanel.this, message, Toast.LENGTH_LONG).show();
+                message = "";
+            }
+        }
+
+
         if (this.getIntent().hasExtra("userID")) {
             userID = this.getIntent().getStringExtra("userID");
             //userID = "e080e402-9040-4078-99e1-81fd86ff3afe";
@@ -79,7 +88,30 @@ public class ControlPanel extends AppCompatActivity {
             report.setVisibility(View.INVISIBLE); //To set visible
         }
 
+        HashMap<String, String> map = new HashMap<>();
+        map.put("UserId", userID);
 
+        HttpCall httpCall = new HttpCall();
+        httpCall.setMethodtype(HttpCall.GET);
+        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/UserManagement/GetUserById");
+        httpCall.setParams(map);
+
+        new HttpRequest() {
+            @Override
+            protected void onResponse(String response) throws JSONException {
+                JSONObject json;
+                json = new JSONObject(response);
+
+                if (json.has("FullName")) {
+                    TextView TVfullName = (TextView) findViewById(R.id.TVfullNameWelcome);
+                    TVfullName.setText("Welcome " + json.get("FullName").toString());
+                } else if (json.has("Message")) {
+                    Toast.makeText(ControlPanel.this, json.get("Message").toString(), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(ControlPanel.this, "Fatal Error", Toast.LENGTH_LONG).show();
+                }
+            }
+        }.execute(httpCall);
 
     }
 
