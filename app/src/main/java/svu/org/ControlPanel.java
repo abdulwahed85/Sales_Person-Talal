@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
@@ -20,6 +21,8 @@ import java.util.HashMap;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,6 +58,19 @@ public class ControlPanel extends AppCompatActivity {
                 message = "";
             }
         }
+
+
+        //load image
+        ImageView imageView = findViewById(R.id.image_view);
+        String url = "https://cdn.pixabay.com/photo/2017/11/06/18/39/apple-2924531_960_720.jpg";
+        Picasso.with(this)
+                .load(url)
+                //.resize(0, 500)
+                //.resizeDimen(R.dimen.image_size, R.dimen.image_size)
+                //.onlyScaleDown()
+                .fit()
+                .centerCrop()
+                .into(imageView);
 
 
         if (this.getIntent().hasExtra("userID")) {
@@ -243,9 +259,9 @@ public class ControlPanel extends AppCompatActivity {
 
             case R.id.three:
                 Intent intent1=new Intent(this,AdminControlPanel.class);
-
                 intent1.putExtra("userID",userID);
                 intent1.putExtra("roles", strRoles);
+                startActivity(intent1);
 
 
             return true;

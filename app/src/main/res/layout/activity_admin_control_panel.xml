@@ -8,7 +8,7 @@
 
 <LinearLayout
 android:textDirection="ltr"
-android:background="@color/whitebackground"
+android:background="@color/mywhite"
 android:orientation="vertical"
 android:layout_width="match_parent"
 android:layout_height="match_parent">
@@ -16,41 +16,38 @@ android:layout_height="match_parent">
 <ListView
     android:divider="@color/whitebackground"
 
-    android:background="@color/whitebackground"
+    android:background="@color/mywhite"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:id="@+id/listViewUsers"
     android:dividerHeight="2dp"
     android:layout_weight="1" />
 
-<LinearLayout
-    android:layoutDirection="ltr"
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="46dp"
-    android:background="@color/whiteback"
-    android:layout_weight="0"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="vertical"
+        android:paddingBottom="4dp">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="fill_parent"
-        android:drawableRight="@drawable/add1"
-        android:layout_height="45dp"
-        android:layout_weight="1"
-        android:background="@color/whiteback"
-        android:onClick="AddNewUser"
-        android:drawablePadding="8dp"
-        android:text="@string/AddNewUser"
-        android:textAlignment="center"
-        android:textColor="@color/darkblue"
-        android:textSize="12dp"
-        android:textStyle="bold" />
-
-
-
-</LinearLayout>
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableRight="@drawable/ic_person_add"
+            android:text="@string/AddNewUser"
+            android:layout_alignParentBottom="true"
+            android:onClick="AddNewUser"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="28dp"
+            android:background="#9BE6D2"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="16dp"
+            android:textSize="16dp" />
+    </LinearLayout>
 </LinearLayout>
     </RelativeLayout>
