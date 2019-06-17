@@ -95,7 +95,7 @@ public class ControlPanel extends AppCompatActivity {
             }
         }
 
-        if (!Arrays.asList(roles).contains("Admin")) {
+       /* if (!Arrays.asList(roles).contains("Admin")) {
             Button butAdmin = (Button)findViewById(R.id.butAdmin);
             butAdmin.setVisibility(View.INVISIBLE); //To set visible
         } else if (!Arrays.asList(roles).contains("SalesPerson")){
@@ -104,7 +104,7 @@ public class ControlPanel extends AppCompatActivity {
 
             Button report = (Button)findViewById(R.id.button3);
             report.setVisibility(View.INVISIBLE); //To set visible
-        }
+        }*/
 
         HashMap<String, String> map = new HashMap<>();
         map.put("UserId", userID);

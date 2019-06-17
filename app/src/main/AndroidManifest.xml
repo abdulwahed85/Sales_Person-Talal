@@ -30,7 +30,8 @@
         <activity android:name=".Registration" />
         <activity android:name=".ControlPanel" />
         <activity android:name=".MainActivity"
-            android:screenOrientation="portrait" ></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashScreenTheme"></activity>
     </application>
 
 </manifest>
