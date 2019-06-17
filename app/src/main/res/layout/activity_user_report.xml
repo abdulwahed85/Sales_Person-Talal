@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:textDirection="rtl"
-        android:background="@color/whitebackground"
+        android:background="@color/mywhite"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,15 +17,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="32dp">
 
             <TextView
-                android:id="@+id/TVfullNameWelcome"
+                android:id="@+id/TVsalesPersonNumber"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:gravity="left"
-                android:text="@string/UserId"
+                android:text=""
+                android:padding="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+            <TextView
+                android:id="@+id/TVrsgistrationDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="left"
+                android:text=""
+                android:padding="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+            <TextView
+                android:id="@+id/TVmonthlyCommission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="left"
+                android:text=""
+                android:padding="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         </LinearLayout>
@@ -34,7 +60,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp">
 
             <Spinner
                 android:id="@+id/spinnerM"
@@ -47,70 +75,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
-
             <Button
                 android:id="@+id/button4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="search"
-                android:text="Search" />
+                android:text="Search"
+                android:background="#9BE6D2"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="0"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/TVsalesPersonNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:gravity="left"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:id="@+id/TVrsgistrationDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:gravity="left"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:id="@+id/TVmonthlyCommission"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:gravity="left"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        </LinearLayout>
 
         <ListView
             android:id="@+id/LVNews"
-
+            android:textDirection="ltr"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/whitebackground"
             android:divider="@color/whitebackground"
             android:dividerHeight="2dp"
-            android:gravity="left" />
+            android:gravity="left"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@color/mywhite" />
 
-        <LinearLayout
-            android:layoutDirection="ltr"
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="46dp"
-            android:background="@color/whiteback"
-            android:layout_weight="0"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"/>
     </LinearLayout>
 </RelativeLayout>

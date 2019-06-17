@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/one"
+        android:icon="@drawable/ic_create_black_24dp"
+        android:title="Edit Profile" />
+    <item android:id="@+id/two"
+        android:icon="@drawable/ic_report"
+        android:title="Report"/>
+    <item android:id="@+id/three"
+        android:icon="@drawable/ic_admin"
+        android:title="adminTool"
+        app:showAsAction="ifRoom" />
+
+</menu>

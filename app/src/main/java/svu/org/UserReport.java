@@ -28,7 +28,7 @@ public class UserReport extends AppCompatActivity {
     ListView listView;
 
     //TextView  TVfullName = (TextView) findViewById(R.id.TVfullName);
-    TextView TVmonthlyCommission, TVrsgistrationDate, TVsalesPersonNumber;
+    TextView TVmonthlyCommission, TVrsgistrationDate, TVsalesPersonNumber ;
 
     String[] months_array = {"0", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     String[] years_array =  {"2015", "2016", "2017", "2018", "2019", "2020"};
@@ -123,6 +123,7 @@ public class UserReport extends AppCompatActivity {
                     TVmonthlyCommission.setText("Monthly Commission:    " + json.get("TotalMonthlyCommission").toString());
                     TVrsgistrationDate.setText("Rsgistration Date:    " + json.get("RegistrationDate").toString());
                     TVsalesPersonNumber.setText("SalesPerson Number:    " + json.get("SalePersonNumber").toString());
+
 
                     spinner.setSelection(Arrays.asList(months_array).indexOf(json.get("Month").toString()));
                     spinner2.setSelection(Arrays.asList(years_array).indexOf(json.get("Year").toString()));

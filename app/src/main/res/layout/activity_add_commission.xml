@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:textDirection="rtl"
-        android:background="@color/whitebackground"
+        android:background="@color/white"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,8 +16,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="15dp"
+            android:layout_marginBottom="2dp"
+            android:maxLength="25"
+            android:orientation="vertical"
+            android:touchscreenBlocksFocus="false">
 
             <TextView
                 android:id="@+id/TVfullNameWelcome"
@@ -26,6 +32,7 @@
                 android:layout_weight="1"
                 android:gravity="left"
                 android:text="@string/UserId"
+                android:textColor="@color/myBlue"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </LinearLayout>
 
@@ -33,7 +40,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="15dp">
 
             <TextView
                 android:id="@+id/TVmainRegion"
@@ -42,6 +52,7 @@
                 android:layout_weight="1"
                 android:gravity="left"
                 android:text=""
+                android:textColor="@color/myBlue"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </LinearLayout>
 
@@ -49,7 +60,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="15dp">
 
             <TextView
                 android:id="@+id/TVsalesPersonNumber"
@@ -58,6 +72,7 @@
                 android:layout_weight="0"
                 android:gravity="left"
                 android:text="SalesPerson Number:    5555"
+                android:textColor="@color/myBlue"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         </LinearLayout>
@@ -72,12 +87,14 @@
                 android:id="@+id/spinnerM"
                 android:layout_width="match_parent"
                 android:layout_height="64px"
+                android:textColor="@color/myBlue"
                 android:layout_weight="1" />
 
             <Spinner
                 android:id="@+id/spinnerY"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textColor="@color/myBlue"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -89,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/whitebackground">
+            android:background="@color/white">
 
             <LinearLayout
 
@@ -205,7 +222,7 @@
                             android:paddingTop="9dp"
                             android:paddingBottom="9dp"
                             android:textAlignment="gravity"
-                            android:textColor="#ff1a102c"
+                            android:textColor="@color/myBlue"
                             android:textSize="18dp" />
                     </LinearLayout>
 
@@ -231,7 +248,7 @@
                             android:paddingTop="9dp"
                             android:paddingBottom="9dp"
                             android:textAlignment="gravity"
-                            android:textColor="#ff1a102c"
+                            android:textColor="@color/myBlue"
                             android:textSize="18dp" />
                     </LinearLayout>
 
@@ -256,8 +273,9 @@
                         android:drawablePadding="4dp"
                         android:onClick="submit"
                         android:paddingRight="5dp"
+                        android:background="#9BE6D2"
                         android:text="@string/Submit"
-                        android:textColor="#ff06071c" />
+                        android:textColor="#fff" />
 
                 </LinearLayout>
 

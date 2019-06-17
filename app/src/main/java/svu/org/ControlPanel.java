@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -176,34 +178,86 @@ public class ControlPanel extends AppCompatActivity {
 
     SearchView searchView;
     Menu myMenu;
+
+
     @Override
-
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.control_menu, menu);
-        myMenu=menu;
-        // Associate searchable configuration with the SearchView
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        //final Context co=this;
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-//code for search
-                //OldNewsStatus.OnlyOneRequest=true;
-                //loadUrl(query, OldNewsStatus.ToolTypeID, 0, 1, 20);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu1, menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+
+            // Edit your profile
+            case R.id.one:
+                HashMap<String, String> map = new HashMap<>();
+
+                map.put("userId", userID);
+
+                HttpCall httpCall = new HttpCall();
+                httpCall.setMethodtype(HttpCall.GET);
+                httpCall.setUrl("https://esalesperson.azurewebsites.net/api/UserManagement/GetUserById");
+                httpCall.setParams(map);
+
+                new HttpRequest() {
+                    @Override
+                    protected void onResponse(String response) throws JSONException {
+                        JSONObject json;
+                        super.onResponse(response);
+                        if( response.equals("404")) {
+                            json = new JSONObject("{'result':'User has been not founded'}");
+                        } else {
+                            json = new JSONObject(response);
+                        }
+                        if (json.has("result")) {
+                            Toast.makeText(ControlPanel.this, json.get("result").toString(), Toast.LENGTH_LONG).show();
+                        } else if (json.has("UserId")) {
+                            Intent intent = new Intent(ControlPanel.this, EditMyProfileActivity.class);
+                            intent.putExtra("user", response);
+                            intent.putExtra("userIDx", userID);
+                            intent.putExtra("roles", strRoles);
+
+                            startActivity(intent);
+
+                        }
+                    }
+                }.execute(httpCall);
+
+
+
+                return true;
+
+            //view report activity
+            case R.id.two:
+                Intent intent = new Intent(ControlPanel.this, UserReport.class);
+                intent.putExtra("userID",userID);
+                intent.putExtra("roles",strRoles);
+                startActivity(intent);
+
+
+                return true;
+
+            case R.id.three:
+                Intent intent1=new Intent(this,AdminControlPanel.class);
+
+                intent1.putExtra("userID",userID);
+                intent1.putExtra("roles", strRoles);
+
+
+            return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+
+
 
     public void userReport(View view) {
         Intent intent = new Intent(ControlPanel.this, UserReport.class);
