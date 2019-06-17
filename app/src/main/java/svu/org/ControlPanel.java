@@ -32,6 +32,8 @@ public class ControlPanel extends AppCompatActivity {
 
     String userID, strRoles ;
     String[] roles;
+    String imgUrl = "";
+    ImageView imageView;
 
     Spinner spinner,spinner2;
     ArrayAdapter<CharSequence> adapter, adapter2;
@@ -60,17 +62,7 @@ public class ControlPanel extends AppCompatActivity {
         }
 
 
-        //load image
-        ImageView imageView = findViewById(R.id.image_view);
-        String url = "https://cdn.pixabay.com/photo/2017/11/06/18/39/apple-2924531_960_720.jpg";
-        Picasso.with(this)
-                .load(url)
-                //.resize(0, 500)
-                //.resizeDimen(R.dimen.image_size, R.dimen.image_size)
-                //.onlyScaleDown()
-                .fit()
-                .centerCrop()
-                .into(imageView);
+
 
 
         if (this.getIntent().hasExtra("userID")) {
@@ -123,6 +115,14 @@ public class ControlPanel extends AppCompatActivity {
                 if (json.has("FullName")) {
                     TextView TVfullName = (TextView) findViewById(R.id.TVfullNameWelcome);
                     TVfullName.setText("Welcome " + json.get("FullName").toString());
+                    if(json.has("PersonalPhoto")) {
+                        if(json.get("PersonalPhoto").toString().length() > 0) {
+                            //load image
+                            imgUrl = "https://esalesperson.azurewebsites.net" + json.get("PersonalPhoto").toString();
+                            imageView = findViewById(R.id.image_view);
+                            setImage();
+                        }
+                    }
                 } else if (json.has("Message")) {
                     Toast.makeText(ControlPanel.this, json.get("Message").toString(), Toast.LENGTH_LONG).show();
                 } else {
@@ -131,6 +131,29 @@ public class ControlPanel extends AppCompatActivity {
             }
         }.execute(httpCall);
 
+        if(imgUrl.length() > 0) {
+            imageView = findViewById(R.id.image_view);
+            Picasso.with(this)
+                    .load(imgUrl)
+                    //.resize(0, 500)
+                    //.resizeDimen(R.dimen.image_size, R.dimen.image_size)
+                    //.onlyScaleDown()
+                    .fit()
+                    .centerCrop()
+                    .into(imageView);
+        }
+
+    }
+
+    private void setImage() {
+        Picasso.with(this)
+                .load(imgUrl)
+                //.resize(0, 500)
+                //.resizeDimen(R.dimen.image_size, R.dimen.image_size)
+                //.onlyScaleDown()
+                .fit()
+                .centerCrop()
+                .into(imageView);
     }
 
     public void addCommission(View view) {

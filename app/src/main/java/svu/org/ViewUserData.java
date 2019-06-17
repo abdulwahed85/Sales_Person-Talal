@@ -12,18 +12,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class ViewUserData extends AppCompatActivity {
     Spinner spinner,spinner2;
     String userID, strRoles, userName;
     String[] roles;
 
-    TextView TVmonthlyCommission, TVrsgistrationDate, TSouth, TCoastl, TNorth, TEast, TLebanon;
-    TextView  TVsalesPersonNumber;
+    TextView TVmonthlyCommission, TSouth, TCoastl, TNorth, TEast, TLebanon;
 
-    String[] months_array = {"0", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    String[] months_array = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
     String[] years_array =  {"2015", "2016", "2017", "2018", "2019", "2020"};
 
     @Override
@@ -94,8 +96,9 @@ public class ViewUserData extends AppCompatActivity {
                 super.onResponse(response);
 
                 JSONObject json = new JSONObject(response);
+
                 if (json.has("Message")) {
-                    TVrsgistrationDate.setText(json.get("Message").toString());
+                    TVmonthlyCommission.setText(json.get("Message").toString());
                 } else {
                     TSouth.setText("SouthSalesCommission:    " + json.get("SouthSalesCommission").toString());
                     TCoastl.setText("CoastalSalesCommission:    " + json.get("CoastalSalesCommission").toString());
@@ -141,7 +144,7 @@ public class ViewUserData extends AppCompatActivity {
 
                 JSONObject json = new JSONObject(response);
                 if (json.has("Message")) {
-                    TVmonthlyCommission.setText(json.get("Message").toString());
+                    //TVmonthlyCommission.setText(json.get("Message").toString());
                 } else {
                     TSouth.setText("SouthSalesCommission:    " + json.get("SouthSalesCommission").toString());
                     TCoastl.setText("CoastalSalesCommission:    " + json.get("CoastalSalesCommission").toString());
