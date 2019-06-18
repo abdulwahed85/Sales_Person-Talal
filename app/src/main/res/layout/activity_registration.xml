@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whitebackground"
+    android:background="@color/mywhite"
     tools:context=".Registration">
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/whitebackground">
+        android:background="@color/mywhite">
 
         <LinearLayout
 
@@ -182,7 +182,7 @@
                     <ListView
                         android:id="@+id/LVmainRegions"
                         android:layout_width="wrap_content"
-                        android:layout_height="800px"
+                        android:layout_height="400dp"
                         android:choiceMode="singleChoice"
                         android:descendantFocusability="beforeDescendants"
                         android:textDirection="ltr" />
@@ -214,7 +214,11 @@
                         android:drawablePadding="4dp"
                         android:onClick="ChooseImage"
                         android:paddingRight="5dp"
-                        android:text="Upload Image" />
+                        android:text="Upload Image"
+                        android:background="#9BE6D2"
+                        android:clickable="true"
+                        android:padding="16dp"
+                        android:textSize="16dp"/>
 
                     <ImageView
                         android:id="@+id/imgView"
@@ -244,14 +248,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-
                     android:layout_marginBottom="10dp"
                     android:layout_weight="0"
                     android:drawablePadding="4dp"
                     android:onClick="registerNewUser"
                     android:paddingRight="5dp"
                     android:text="@string/addUser"
-                    android:textColor="#ff06071c" />
+                    android:textColor="#ff06071c"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginRight="40dp"
+                    android:background="#9BE6D2"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:textSize="16dp"
+                    />
 
             </LinearLayout>
 

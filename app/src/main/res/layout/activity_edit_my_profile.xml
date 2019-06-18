@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whitebackground"
+    android:background="@color/mywhite"
     tools:context=".EditMyProfileActivity">
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/whitebackground">
+        android:background="@color/mywhite">
 
         <LinearLayout
 
@@ -143,14 +143,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
                     android:orientation="vertical"
-                    android:touchscreenBlocksFocus="false">
+                    android:touchscreenBlocksFocus="false"
+                    android:layoutDirection="ltr">
 
                     <ListView
                         android:id="@+id/LVmainRegions"
-                        android:layout_width="wrap_content"
-                        android:layout_height="800px"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
                         android:choiceMode="singleChoice"
-                        android:descendantFocusability="beforeDescendants" />
+                        android:descendantFocusability="afterDescendants" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -165,15 +166,15 @@
                     android:id="@+id/BuSaveSetting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-
-                    android:layout_marginBottom="10dp"
                     android:layout_weight="0"
                     android:drawablePadding="4dp"
                     android:onClick="save"
                     android:paddingRight="5dp"
                     android:text="@string/addUser"
-                    android:textColor="#ff06071c" />
+                    android:textColor="#ff06071c"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#9BE6D2" />
 
             </LinearLayout>
 
