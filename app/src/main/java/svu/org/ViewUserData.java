@@ -4,10 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +31,7 @@ public class ViewUserData extends AppCompatActivity {
 
     String[] months_array = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
     String[] years_array =  {"2015", "2016", "2017", "2018", "2019", "2020"};
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +93,18 @@ public class ViewUserData extends AppCompatActivity {
         httpCall.setMethodtype(HttpCall.GET);
         httpCall.setUrl("https://esalesperson.azurewebsites.net/api/SalesTransaction/GetLatestReport");
         httpCall.setParams(map);
+
+
+
+       // user image
+       /* Picasso.with(this)
+                .load(" ")
+                //.resize(0, 500)
+                //.resizeDimen(R.dimen.image_size, R.dimen.image_size)
+                //.onlyScaleDown()
+                .fit()
+                .centerCrop()
+                .into(imageView);*/
 
 
         new HttpRequest() {
