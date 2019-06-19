@@ -100,15 +100,11 @@ public class AdminControlPanel extends AppCompatActivity {
 
     public class UserListAdapter extends ArrayAdapter<User> {
         List<User> heroList;
-
         private TextView text;
-
         //activity context
         Context context;
-
         //the layout resource file for the list items
         int resource;
-
         //constructor initializing the values
         public UserListAdapter(Context context, int resource, List<User> heroList) {
             super(context, resource, heroList);
@@ -116,7 +112,6 @@ public class AdminControlPanel extends AppCompatActivity {
             this.resource = resource;
             this.heroList = heroList;
         }
-
         //this will return the ListView Item as a View
         @NonNull
         @Override
@@ -125,10 +120,8 @@ public class AdminControlPanel extends AppCompatActivity {
             //we need to get the view of the xml for our list item
             //And for this we need a layoutinflater
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-
             //getting the view
             final View view = layoutInflater.inflate(resource, parent, false);
-
             //getting the view elements of the list from the view
             //ImageView imageView = view.findViewById(R.id.imageView);
             final TextView textViewName = view.findViewById(R.id.textUserId);

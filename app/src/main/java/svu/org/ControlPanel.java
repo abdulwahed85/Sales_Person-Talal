@@ -210,10 +210,28 @@ public class ControlPanel extends AppCompatActivity {
     Menu myMenu;
 
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu1, menu);
+        return true;
+    }
+
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        MenuItem report = menu.findItem(R.id.two);
+        MenuItem adminControlPanel = menu.findItem(R.id.three);;
+        if(!Arrays.asList(roles).contains("SalesPerson"))
+        {
+            adminControlPanel.setVisible(true);
+            report.setVisible(false);
+        }
+        else
+        {
+            adminControlPanel.setVisible(false);
+            report.setVisible(true);
+        }
         return true;
     }
 
