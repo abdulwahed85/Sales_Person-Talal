@@ -20,30 +20,24 @@ import java.util.HashMap;
 public class AddCommission extends AppCompatActivity {
 
 
-    String userID, empNumber, strRoles;
+    String userID, empNumber, strRoles, imgUrl;
     String userMainRegion = "";
     Spinner spinner,spinner2;
     String[] roles, months_array = {"0", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     ImageView imageView;
 
+    private void setImage() {
+        Picasso.with(this)
+                .load(imgUrl)
+                .fit()
+                .centerCrop()
+                .into(imageView);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_commission);
-
-
-      //  load image
-        imageView = findViewById(R.id.Photo1);
-        String url = "https://cdn.pixabay.com/photo/2017/11/06/18/39/apple-2924531_960_720.jpg";
-        Picasso.with(this)
-                .load(url)
-                //.resize(0, 500)
-                //.resizeDimen(R.dimen.image_size, R.dimen.image_size)
-                //.onlyScaleDown()
-                .fit()
-                .centerCrop()
-                .into(imageView);
-
 
         spinner = (Spinner) findViewById(R.id.spinnerM);
         spinner2 = (Spinner) findViewById(R.id.spinnerY);
@@ -88,6 +82,14 @@ public class AddCommission extends AppCompatActivity {
                     if (json.has("FullName")) {
                         TextView TVfullName = (TextView) findViewById(R.id.TVfullNameWelcome);
                         TVfullName.setText(json.get("FullName").toString());
+                        if(json.has("PersonalPhoto")) {
+                            if(json.get("PersonalPhoto").toString().length() > 0) {
+                                //load image
+                                imgUrl = "https://esalesperson.azurewebsites.net" + json.get("PersonalPhoto").toString();
+                                imageView = findViewById(R.id.Photo1);
+                                setImage();
+                            }
+                        }
                         if (json.has("MainRegionId")) {
                             userMainRegion = json.get("MainRegionId").toString();
                             if(userMainRegion.length() > 0) {

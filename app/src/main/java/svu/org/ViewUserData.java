@@ -24,7 +24,7 @@ import java.util.List;
 
 public class ViewUserData extends AppCompatActivity {
     Spinner spinner,spinner2;
-    String userID, strRoles, userName;
+    String userID, strRoles, userName, imgUrl;
     String[] roles;
 
 
@@ -33,6 +33,14 @@ public class ViewUserData extends AppCompatActivity {
     String[] months_array = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
     String[] years_array =  {"2015", "2016", "2017", "2018", "2019", "2020"};
     ImageView imageView;
+
+    private void setImage() {
+        Picasso.with(this)
+                .load(imgUrl)
+                .fit()
+                .centerCrop()
+                .into(imageView);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,27 +96,38 @@ public class ViewUserData extends AppCompatActivity {
         TLebanon = (TextView) findViewById(R.id.TLebanon);
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("userId", userID);
+        map.put("UserId", userID);
 
         HttpCall httpCall = new HttpCall();
         httpCall.setMethodtype(HttpCall.GET);
-        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/SalesTransaction/GetLatestReport");
+        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/UserManagement/GetUserById");
         httpCall.setParams(map);
 
+        new HttpRequest() {
+            @Override
+            protected void onResponse(String response) throws JSONException {
+                JSONObject json;
+                json = new JSONObject(response);
+
+                if(json.has("PersonalPhoto")) {
+                    if(json.get("PersonalPhoto").toString().length() > 0) {
+                        //load image
+                        imgUrl = "https://esalesperson.azurewebsites.net" + json.get("PersonalPhoto").toString();
+                        imageView = findViewById(R.id.UserPhoto);
+                        setImage();
+                    }
+                }
+            }
+        }.execute(httpCall);
 
 
-       // user image
-        imageView = findViewById(R.id.UserPhoto);
-        String url = "https://cdn.pixabay.com/photo/2017/11/06/18/39/apple-2924531_960_720.jpg";
-        Picasso.with(this)
-                .load(url)
-                //.resize(0, 500)
-                //.resizeDimen(R.dimen.image_size, R.dimen.image_size)
-                //.onlyScaleDown()
-                .fit()
-                .centerCrop()
-                .into(imageView);
+        map = new HashMap<>();
+        map.put("userId", userID);
 
+        httpCall = new HttpCall();
+        httpCall.setMethodtype(HttpCall.GET);
+        httpCall.setUrl("https://esalesperson.azurewebsites.net/api/SalesTransaction/GetLatestReport");
+        httpCall.setParams(map);
 
         new HttpRequest() {
             @Override
