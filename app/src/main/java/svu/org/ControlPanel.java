@@ -135,9 +135,6 @@ public class ControlPanel extends AppCompatActivity {
             imageView = findViewById(R.id.image_view);
             Picasso.with(this)
                     .load(imgUrl)
-                    //.resize(0, 500)
-                    //.resizeDimen(R.dimen.image_size, R.dimen.image_size)
-                    //.onlyScaleDown()
                     .fit()
                     .centerCrop()
                     .into(imageView);
@@ -148,9 +145,6 @@ public class ControlPanel extends AppCompatActivity {
     private void setImage() {
         Picasso.with(this)
                 .load(imgUrl)
-                //.resize(0, 500)
-                //.resizeDimen(R.dimen.image_size, R.dimen.image_size)
-                //.onlyScaleDown()
                 .fit()
                 .centerCrop()
                 .into(imageView);
