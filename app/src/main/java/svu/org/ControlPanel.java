@@ -88,14 +88,14 @@ public class ControlPanel extends AppCompatActivity {
         }
 
        /* if (!Arrays.asList(roles).contains("Admin")) {
-            Button butAdmin = (Button)findViewById(R.id.butAdmin);
+            Button butAdmin = (Button)findViewById(R.id.two);
             butAdmin.setVisibility(View.INVISIBLE); //To set visible
+            Button butAdmin1 = (Button)findViewById(R.id.Submit);
+            butAdmin1.setVisibility(View.INVISIBLE);
         } else if (!Arrays.asList(roles).contains("SalesPerson")){
-            Button butAddComm = (Button)findViewById(R.id.Submit);
+            Button butAddComm = (Button)findViewById(R.id.three);
             butAddComm.setVisibility(View.INVISIBLE); //To set visible
 
-            Button report = (Button)findViewById(R.id.button3);
-            report.setVisibility(View.INVISIBLE); //To set visible
         }*/
 
         HashMap<String, String> map = new HashMap<>();

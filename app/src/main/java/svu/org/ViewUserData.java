@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -98,7 +99,17 @@ public class ViewUserData extends AppCompatActivity {
                 JSONObject json = new JSONObject(response);
 
                 if (json.has("Message")) {
-                    TVmonthlyCommission.setText(json.get("Message").toString());
+                   // TVmonthlyCommission.setText(json.get("Message").toString());
+                    String s=json.get("Message").toString();
+                    Toast.makeText(ViewUserData.this,s, Toast.LENGTH_LONG).show();
+                    TSouth.setText("SouthSalesCommission:    " );
+                    TCoastl.setText("CoastalSalesCommission:    " );
+                    TNorth.setText("NorthSalesCommission:    " );
+                    TEast.setText("EastSalesCommission:    "  );
+                    TLebanon.setText("LebanonSalesCommission:    "  );
+
+                    TVmonthlyCommission.setText("No commission for this month   " );
+
                 } else {
                     TSouth.setText("SouthSalesCommission:    " + json.get("SouthSalesCommission").toString());
                     TCoastl.setText("CoastalSalesCommission:    " + json.get("CoastalSalesCommission").toString());
@@ -145,6 +156,16 @@ public class ViewUserData extends AppCompatActivity {
                 JSONObject json = new JSONObject(response);
                 if (json.has("Message")) {
                     //TVmonthlyCommission.setText(json.get("Message").toString());
+                    String s=json.get("Message").toString();
+                    Toast.makeText(ViewUserData.this,s, Toast.LENGTH_LONG).show();
+                    TSouth.setText("SouthSalesCommission:    " );
+                    TCoastl.setText("CoastalSalesCommission:    " );
+                    TNorth.setText("NorthSalesCommission:    " );
+                    TEast.setText("EastSalesCommission:    "  );
+                    TLebanon.setText("LebanonSalesCommission:    "  );
+
+                    TVmonthlyCommission.setText("No commission for this month    " );
+
                 } else {
                     TSouth.setText("SouthSalesCommission:    " + json.get("SouthSalesCommission").toString());
                     TCoastl.setText("CoastalSalesCommission:    " + json.get("CoastalSalesCommission").toString());

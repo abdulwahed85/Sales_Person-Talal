@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:textDirection="ltr"
             android:orientation="vertical"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"

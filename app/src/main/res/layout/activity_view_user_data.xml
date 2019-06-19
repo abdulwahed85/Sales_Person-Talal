@@ -7,195 +7,204 @@
     tools:context=".ViewUserData">
 
     <ScrollView
-        android:background="@color/whitebackground"
+        android:background="@color/mywhite"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/timg">
-
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="120dp"
-            android:background="@drawable/logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="110dp"
-            android:id="@+id/UserPhoto"
-            />
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/UserPhoto"
-            android:layout_weight="0"
-            android:orientation="horizontal"
-            android:padding="16dp">
+           >
 
-            <Spinner
-                android:id="@+id/spinnerM"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_height="120dp"
+                android:background="@drawable/logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="110dp"
+                android:id="@+id/UserPhoto" />
 
-            <Spinner
-                android:id="@+id/spinnerY"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/UserPhoto"
+                android:layout_weight="0"
+                android:id="@+id/spinnerholder"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="16dp">
 
-            <Button
-                android:id="@+id/buttonS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/angle"
+                <Spinner
+                    android:id="@+id/spinnerM"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-                android:onClick="search"
-                android:text="Search" />
+                <Spinner
+                    android:id="@+id/spinnerY"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_alignParentBottom="true">
+                <Button
+                    android:id="@+id/buttonS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/myBlue"
 
-            <TextView
-                android:id="@+id/TTotal"
+                    android:onClick="search"
+                    android:text="Search" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginRight="35dp"
-                android:background="#0000"
-                android:enabled="true"
-                android:hint="Total"
-                android:inputType="text"
-                android:padding="16dp"
-                android:textColor="#ADCCE2"
-                android:textColorHint="#ADCCE2"
-                android:textSize="16dp" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_height="30dp"
-                android:background="#ADCCE2" />
-            <TextView
-                android:textSize="16dp"
-                android:id="@+id/TNorth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="North"
-                android:textColorHint="#ADCCE2"
-                android:textColor="#ADCCE2"
-                android:layout_marginLeft="22dp"
-                android:inputType="text"
-                android:background="#0000"
-                android:padding="16dp"
-                android:layout_marginRight="35dp"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_height="1dp"
-                android:background="#ADCCE2" />
-            <TextView
-                android:textSize="16dp"
-                android:id="@+id/TEast"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="East"
-                android:textColorHint="#ADCCE2"
-                android:textColor="#ADCCE2"
-                android:layout_marginLeft="22dp"
-                android:inputType="text"
-                android:background="#0000"
-                android:padding="16dp"
-                android:layout_marginRight="35dp"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_height="1dp"
-                android:background="#ADCCE2" />
-            <TextView
-                android:textSize="16dp"
-                android:id="@+id/TSouth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="South"
-                android:textColorHint="#ADCCE2"
-                android:textColor="#ADCCE2"
-                android:layout_marginLeft="22dp"
-                android:inputType="text"
-                android:background="#0000"
-                android:padding="16dp"
-                android:layout_marginRight="35dp"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_height="1dp"
-                android:background="#ADCCE2" />
-            <TextView
-                android:textSize="16dp"
-                android:id="@+id/TCoastl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Coastl"
-                android:textColorHint="#ADCCE2"
-                android:textColor="#ADCCE2"
-                android:layout_marginLeft="22dp"
-                android:inputType="text"
-                android:background="#0000"
-                android:padding="16dp"
-                android:layout_marginRight="35dp"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_height="1dp"
-                android:background="#ADCCE2" />
-            <TextView
-                android:textSize="16dp"
-                android:id="@+id/TLebanon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Lebanon"
-                android:textColorHint="#ADCCE2"
-                android:layout_marginLeft="22dp"
-                android:inputType="textPassword"
-                android:maxLength="12"
-                android:textColor="#ADCCE2"
-                android:background="#0000"
-                android:padding="16dp"
-                android:layout_marginRight="35dp"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
-                android:background="#ADCCE2"/>
-            <TextView
-                android:id="@+id/ok"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/angle"
-                android:text="OK"
-                android:textSize="16dp"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:padding="16dp"
+                android:layout_below="@+id/spinnerholder"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="28dp"
-                android:layout_marginTop="32dp"
-                />
-        </LinearLayout>
-    </RelativeLayout>
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/TTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="35dp"
+                    android:background="#0000"
+                    android:enabled="true"
+                    android:hint="Total"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColorHint="#ADCCE2"
+                    android:textSize="16dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@color/myBlue" />
+
+                <TextView
+                    android:id="@+id/TNorth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="35dp"
+                    android:background="#0000"
+                    android:hint="North"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColorHint="#ADCCE2"
+                    android:textSize="16dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@color/myBlue" />
+
+                <TextView
+                    android:id="@+id/TEast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="35dp"
+                    android:background="#0000"
+                    android:hint="East"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColorHint="#ADCCE2"
+                    android:textSize="16dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="#ADCCE2" />
+
+                <TextView
+                    android:id="@+id/TSouth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="35dp"
+                    android:background="#0000"
+                    android:hint="South"
+                    android:inputType="text"
+                    android:padding="16dp"
+
+                    android:textColorHint="#ADCCE2"
+                    android:textSize="16dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="#ADCCE2" />
+
+                <TextView
+                    android:id="@+id/TCoastl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="35dp"
+                    android:background="#0000"
+                    android:hint="Coastl"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColorHint="#ADCCE2"
+                    android:textSize="16dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="#ADCCE2" />
+
+                <TextView
+                    android:id="@+id/TLebanon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="35dp"
+                    android:background="#0000"
+                    android:hint="Lebanon"
+                    android:inputType="textPassword"
+                    android:maxLength="12"
+                    android:padding="16dp"
+                    android:textColorHint="#ADCCE2"
+                    android:textSize="16dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ADCCE2" />
+
+                <TextView
+                    android:id="@+id/ok"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="28dp"
+                    android:background="@color/myBlue"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="OK"
+                    android:textSize="16dp" />
+            </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>

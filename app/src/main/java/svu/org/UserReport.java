@@ -107,7 +107,21 @@ public class UserReport extends AppCompatActivity {
 
                 JSONObject json = new JSONObject(response);
                 if (json.has("Message")) {
-                    TVrsgistrationDate.setText(json.get("Message").toString());
+                    String s=json.get("Message").toString();
+                    Toast.makeText(UserReport.this,s, Toast.LENGTH_LONG).show();
+
+
+                    mobileArray = new String[5];
+                    mobileArray[0] = "SouthSalesCommission:    " ;
+                    mobileArray[1] = "CoastalSalesCommission:    " ;
+                    mobileArray[2] = "NorthSalesCommission:    " ;
+                    mobileArray[3] = "EastSalesCommission:    "  ;
+                    mobileArray[4] = "LebanonSalesCommission:    "  ;
+
+                    ArrayAdapter<String> adapter3= new ArrayAdapter<String>(UserReport.this, android.R.layout.simple_list_item_1, mobileArray);
+
+                    listView.setAdapter(adapter3);
+                    TVmonthlyCommission.setText("No commission for this month    ");
                 } else {
                     mobileArray = new String[5];
                     mobileArray[0] = "SouthSalesCommission:    " + json.get("SouthSalesCommission").toString();
@@ -159,7 +173,22 @@ public class UserReport extends AppCompatActivity {
 
                 JSONObject json = new JSONObject(response);
                 if (json.has("Message")) {
-                    TVrsgistrationDate.setText(json.get("Message").toString());
+                    //TVrsgistrationDate.setText(json.get("Message").toString());
+                    String s=json.get("Message").toString();
+                    Toast.makeText(UserReport.this,s, Toast.LENGTH_LONG).show();
+
+
+                    mobileArray = new String[5];
+                    mobileArray[0] = "SouthSalesCommission:    " ;
+                    mobileArray[1] = "CoastalSalesCommission:    " ;
+                    mobileArray[2] = "NorthSalesCommission:    " ;
+                    mobileArray[3] = "EastSalesCommission:    "  ;
+                    mobileArray[4] = "LebanonSalesCommission:    "  ;
+
+                    ArrayAdapter<String> adapter3= new ArrayAdapter<String>(UserReport.this, android.R.layout.simple_list_item_1, mobileArray);
+
+                    listView.setAdapter(adapter3);
+                    TVmonthlyCommission.setText("No commission for this month    ");
                 } else {
                     mobileArray = new String[5];
                     mobileArray[0] = "SouthSalesCommission:    " + json.get("SouthSalesCommission").toString();

@@ -6,68 +6,85 @@
     android:layout_height="match_parent"
     tools:context=".ControlPanel">
 
-    <LinearLayout
-        android:textDirection="rtl"
-        android:background="@color/mywhite"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="vertical"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="32dp">
-
-        <TextView
-            android:id="@+id/TVfullNameWelcome"
-            android:text=""
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:gravity="left"
-
-            />
-    </LinearLayout>
 
 
-
-
-        <ImageView
-            android:layout_width="90dp"
-            android:id="@+id/image_view"
-            android:layout_height="120dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="140dp"
-            android:layout_gravity="center"
-            />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:background="@color/mywhite"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:textDirection="rtl">
 
-            <Button
-                android:id="@+id/Submit"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableRight="@drawable/ic_add_circle"
-                android:text="@string/AddCommission"
-                android:layout_alignParentBottom="true"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginBottom="28dp"
-                android:background="#9BE6D2"
-                android:clickable="true"
+                android:layout_marginBottom="32dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/TVfullNameWelcome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:text=""
+
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/appentry"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:gravity="center"
-                android:padding="16dp"
-                android:onClick="addCommission"
-                android:textSize="16dp" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="90dp"
+                    android:layout_height="120dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentBottom="true"
+                android:layout_weight="1"
+                android:gravity="center|bottom"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/Submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="28dp"
+                    android:background="#9BE6D2"
+                    android:clickable="true"
+                    android:drawableRight="@drawable/ic_add_circle"
+                    android:gravity="center"
+                    android:onClick="addCommission"
+                    android:padding="16dp"
+                    android:text="@string/AddCommission"
+                    android:textSize="16dp" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
 </RelativeLayout>
