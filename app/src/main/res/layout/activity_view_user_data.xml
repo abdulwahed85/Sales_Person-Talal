@@ -175,7 +175,7 @@
                     android:layout_marginRight="35dp"
                     android:background="#0000"
                     android:hint="Lebanon"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:maxLength="12"
                     android:padding="16dp"
                     android:textColorHint="#ADCCE2"

@@ -87,16 +87,7 @@ public class ControlPanel extends AppCompatActivity {
             }
         }
 
-       /* if (!Arrays.asList(roles).contains("Admin")) {
-            Button butAdmin = (Button)findViewById(R.id.two);
-            butAdmin.setVisibility(View.INVISIBLE); //To set visible
-            Button butAdmin1 = (Button)findViewById(R.id.Submit);
-            butAdmin1.setVisibility(View.INVISIBLE);
-        } else if (!Arrays.asList(roles).contains("SalesPerson")){
-            Button butAddComm = (Button)findViewById(R.id.three);
-            butAddComm.setVisibility(View.INVISIBLE); //To set visible
 
-        }*/
 
         HashMap<String, String> map = new HashMap<>();
         map.put("UserId", userID);
@@ -130,6 +121,17 @@ public class ControlPanel extends AppCompatActivity {
                 }
             }
         }.execute(httpCall);
+
+        /* if (!Arrays.asList(roles).contains("Admin")) {
+            Button butAdmin = (Button)findViewById(R.id.two);
+            butAdmin.setVisibility(View.INVISIBLE); //To set visible
+            Button butAdmin1 = (Button)findViewById(R.id.Submit);
+            butAdmin1.setVisibility(View.INVISIBLE);
+        } else if (!Arrays.asList(roles).contains("SalesPerson")){
+            Button butAddComm = (Button)findViewById(R.id.three);
+            butAddComm.setVisibility(View.INVISIBLE); //To set visible
+
+        }*/
 
         if(imgUrl.length() > 0) {
             imageView = findViewById(R.id.image_view);
