@@ -27,6 +27,7 @@ public class ViewUserData extends AppCompatActivity {
     String userID, strRoles, userName;
     String[] roles;
 
+
     TextView TVmonthlyCommission, TSouth, TCoastl, TNorth, TEast, TLebanon;
 
     String[] months_array = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
@@ -97,6 +98,7 @@ public class ViewUserData extends AppCompatActivity {
 
 
        // user image
+        imageView = findViewById(R.id.UserPhoto);
         String url = "https://cdn.pixabay.com/photo/2017/11/06/18/39/apple-2924531_960_720.jpg";
         Picasso.with(this)
                 .load(url)
