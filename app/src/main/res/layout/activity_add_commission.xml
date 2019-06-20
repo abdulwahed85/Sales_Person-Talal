@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,42 +7,48 @@
     tools:context=".AddCommission">
 
     <LinearLayout
-        android:textDirection="rtl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:textDirection="rtl">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:layout_weight="1"
+            android:maxLength="25"
+            android:orientation="vertical"
             android:paddingLeft="15dp"
             android:paddingTop="10dp"
             android:paddingRight="15dp"
-            android:layout_marginBottom="2dp"
-            android:maxLength="25"
-            android:orientation="vertical"
+            android:id="@+id/myphoto2"
             android:touchscreenBlocksFocus="false">
 
             <ImageView
+                android:id="@+id/Photo1"
                 android:layout_width="90dp"
                 android:layout_height="120dp"
-                android:background="@drawable/logo"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/Photo1" />
+                android:layout_gravity="center"
+                 />
 
         </LinearLayout>
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_below="@+id/Photo1"
             android:layout_weight="1"
+            android:maxLength="25"
+            android:orientation="vertical"
             android:paddingLeft="15dp"
             android:paddingTop="10dp"
             android:paddingRight="15dp"
-            android:layout_marginBottom="2dp"
-            android:maxLength="25"
-            android:orientation="vertical"
             android:touchscreenBlocksFocus="false">
 
             <TextView
@@ -52,8 +58,8 @@
                 android:layout_weight="1"
                 android:gravity="left"
                 android:text="@string/UserId"
-                android:textColor="@color/myBlue"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/myBlue" />
         </LinearLayout>
 
         <LinearLayout
@@ -72,8 +78,8 @@
                 android:layout_weight="1"
                 android:gravity="left"
                 android:text=""
-                android:textColor="@color/myBlue"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/myBlue" />
         </LinearLayout>
 
         <LinearLayout
@@ -92,11 +98,11 @@
                 android:layout_weight="0"
                 android:gravity="left"
                 android:text="SalesPerson Number:    5555"
-                android:textColor="@color/myBlue"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/myBlue" />
 
-        </LinearLayout>
 
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,19 +113,17 @@
                 android:id="@+id/spinnerM"
                 android:layout_width="match_parent"
                 android:layout_height="64px"
-                android:textColor="@color/myBlue"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textColor="@color/myBlue" />
 
             <Spinner
                 android:id="@+id/spinnerY"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/myBlue"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textColor="@color/myBlue" />
 
         </LinearLayout>
-
-
 
 
         <ScrollView
@@ -242,7 +246,6 @@
                             android:paddingTop="9dp"
                             android:paddingBottom="9dp"
                             android:textAlignment="gravity"
-                            android:textColor="@color/myBlue"
                             android:textSize="18dp" />
                     </LinearLayout>
 
@@ -256,19 +259,18 @@
 
                         <EditText
                             android:id="@+id/Elebanon"
-                            android:gravity="left"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
                             android:layout_weight="1"
                             android:ems="10"
+                            android:gravity="left"
                             android:hint="@string/Lebanon"
                             android:inputType="number"
                             android:maxLength="15"
                             android:paddingTop="9dp"
                             android:paddingBottom="9dp"
                             android:textAlignment="gravity"
-                            android:textColor="@color/myBlue"
                             android:textSize="18dp" />
                     </LinearLayout>
 
@@ -289,13 +291,12 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="0"
-                        android:drawableRight="@drawable/add"
+                        android:background="#9BE6D2"
+                        android:drawableRight="@drawable/ic_add_circle"
                         android:drawablePadding="4dp"
                         android:onClick="submit"
                         android:paddingRight="5dp"
-                        android:background="#9BE6D2"
-                        android:text="@string/Submit"
-                        android:textColor="#fff" />
+                        android:text="@string/Submit" />
 
                 </LinearLayout>
 
@@ -304,5 +305,4 @@
     </LinearLayout>
 
 
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

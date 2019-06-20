@@ -19,7 +19,6 @@
             <ImageView
                 android:layout_width="90dp"
                 android:layout_height="120dp"
-                android:background="@drawable/logo"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="110dp"
                 android:id="@+id/UserPhoto" />
@@ -176,7 +175,6 @@
                     android:background="#0000"
                     android:hint="Lebanon"
                     android:inputType="text"
-                    android:maxLength="12"
                     android:padding="16dp"
                     android:textColorHint="#ADCCE2"
                     android:textSize="16dp" />

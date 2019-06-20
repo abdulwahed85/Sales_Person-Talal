@@ -34,8 +34,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:gravity="left"
-                    android:padding="5dp"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:textSize="16dp"
                     android:text=""
 
                     />
