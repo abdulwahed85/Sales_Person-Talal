@@ -85,8 +85,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
+            android:layout_weight="0"
+            android:orientation="horizontal"
             android:paddingLeft="15dp"
             android:paddingTop="10dp"
             android:paddingRight="15dp">
@@ -95,7 +95,7 @@
                 android:id="@+id/TVsalesPersonNumber"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:gravity="left"
                 android:text="SalesPerson Number:    5555"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
