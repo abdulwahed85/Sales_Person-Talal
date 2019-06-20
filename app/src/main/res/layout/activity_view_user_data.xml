@@ -123,7 +123,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
-                    android:background="#ADCCE2" />
+                    android:background="@color/myBlue" />
 
                 <TextView
                     android:id="@+id/TSouth"
@@ -144,7 +144,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
-                    android:background="#ADCCE2" />
+                    android:background="@color/myBlue"/>
 
                 <TextView
                     android:id="@+id/TCoastl"
@@ -164,7 +164,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
-                    android:background="#ADCCE2" />
+                    android:background="@color/myBlue" />
 
                 <TextView
                     android:id="@+id/TLebanon1"
@@ -185,7 +185,7 @@
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
                     android:layout_marginBottom="10dp"
-                    android:background="#ADCCE2" />
+                    android:background="@color/myBlue" />
 
                 <TextView
                     android:id="@+id/ok"
