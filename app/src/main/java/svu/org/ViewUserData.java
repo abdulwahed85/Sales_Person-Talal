@@ -93,7 +93,7 @@ public class ViewUserData extends AppCompatActivity {
         TCoastl = (TextView) findViewById(R.id.TCoastl);
         TNorth = (TextView) findViewById(R.id.TNorth);
         TEast = (TextView) findViewById(R.id.TEast);
-        TLebanon = (TextView) findViewById(R.id.TLebanon);
+        TLebanon = (TextView) findViewById(R.id.TLebanon1);
 
         HashMap<String, String> map = new HashMap<>();
         map.put("UserId", userID);
@@ -187,7 +187,7 @@ public class ViewUserData extends AppCompatActivity {
                 TCoastl = (TextView) findViewById(R.id.TCoastl);
                 TNorth = (TextView) findViewById(R.id.TNorth);
                 TEast = (TextView) findViewById(R.id.TEast);
-                TLebanon = (TextView) findViewById(R.id.TLebanon);
+                TLebanon = (TextView) findViewById(R.id.TLebanon1);
                 //TVrsgistrationDate = (TextView) findViewById(R.id.TVrsgistrationDate);
                 //TVsalesPersonNumber = (TextView) findViewById(R.id.TVsalesPersonNumber);
 

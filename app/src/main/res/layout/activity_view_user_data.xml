@@ -167,7 +167,7 @@
                     android:background="#ADCCE2" />
 
                 <TextView
-                    android:id="@+id/TLebanon"
+                    android:id="@+id/TLebanon1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"

@@ -149,7 +149,7 @@
                     <ListView
                         android:id="@+id/LVmainRegions"
                         android:layout_width="match_parent"
-                        android:layout_height="400dp"
+                        android:layout_height="300dp"
                         android:choiceMode="singleChoice"
                         android:descendantFocusability="afterDescendants" />
                 </LinearLayout>
@@ -174,6 +174,7 @@
                     android:textColor="#ff06071c"
                     android:layout_marginLeft="15dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_alignParentBottom="true"
                     android:background="#9BE6D2" />
 
             </LinearLayout>
